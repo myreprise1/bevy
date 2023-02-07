@@ -1,7 +1,7 @@
-use crate::fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_app::prelude::*;
 use bevy_asset::{load_internal_asset, HandleUntyped};
 use bevy_ecs::prelude::*;
+use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_reflect::TypeUuid;
 use bevy_render::renderer::RenderDevice;
 use bevy_render::view::ViewTarget;

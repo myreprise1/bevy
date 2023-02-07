@@ -2,7 +2,6 @@ pub mod bloom;
 pub mod clear_color;
 pub mod core_2d;
 pub mod core_3d;
-pub mod fullscreen_vertex_shader;
 pub mod fxaa;
 pub mod prepass;
 pub mod tonemapping;
@@ -22,28 +21,19 @@ use crate::{
     clear_color::{ClearColor, ClearColorConfig},
     core_2d::Core2dPlugin,
     core_3d::Core3dPlugin,
-    fullscreen_vertex_shader::FULLSCREEN_SHADER_HANDLE,
     fxaa::FxaaPlugin,
     prepass::{DepthPrepass, NormalPrepass},
     tonemapping::TonemappingPlugin,
     upscaling::UpscalingPlugin,
 };
 use bevy_app::{App, Plugin};
-use bevy_asset::load_internal_asset;
-use bevy_render::{extract_resource::ExtractResourcePlugin, prelude::Shader};
+use bevy_render::extract_resource::ExtractResourcePlugin;
 
 #[derive(Default)]
 pub struct CorePipelinePlugin;
 
 impl Plugin for CorePipelinePlugin {
     fn build(&self, app: &mut App) {
-        load_internal_asset!(
-            app,
-            FULLSCREEN_SHADER_HANDLE,
-            "fullscreen_vertex_shader/fullscreen.wgsl",
-            Shader::from_wgsl
-        );
-
         app.register_type::<ClearColor>()
             .register_type::<ClearColorConfig>()
             .register_type::<DepthPrepass>()

@@ -1,8 +1,9 @@
-use crate::{core_2d, core_3d, fullscreen_vertex_shader::fullscreen_shader_vertex_state};
+use crate::{core_2d, core_3d};
 use bevy_app::prelude::*;
 use bevy_asset::{load_internal_asset, HandleUntyped};
 use bevy_derive::Deref;
 use bevy_ecs::prelude::*;
+use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_reflect::TypeUuid;
 use bevy_render::{
     extract_component::{ExtractComponent, ExtractComponentPlugin},

@@ -1,3 +1,6 @@
+pub mod plugin;
+pub use plugin::FullscreenVertexShaderPlugin;
+
 use bevy_asset::HandleUntyped;
 use bevy_reflect::TypeUuid;
 use bevy_render::{prelude::Shader, render_resource::VertexState};
