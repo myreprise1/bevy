@@ -1,18 +1,16 @@
 use bevy_app::Plugin;
 use bevy_asset::{load_internal_asset, AssetServer, Handle, HandleUntyped};
-use bevy_core_pipeline::{
-    prelude::Camera3d,
-    prepass::{
-        AlphaMask3dPrepass, DepthPrepass, NormalPrepass, Opaque3dPrepass, ViewPrepassTextures,
-        DEPTH_PREPASS_FORMAT, NORMAL_PREPASS_FORMAT,
-    },
-};
+use bevy_core_pipeline::prelude::Camera3d;
 use bevy_ecs::{
     prelude::*,
     system::{
         lifetimeless::{Read, SRes},
         SystemParamItem,
     },
+};
+use bevy_prepass::{
+    AlphaMask3dPrepass, DepthPrepass, NormalPrepass, Opaque3dPrepass, ViewPrepassTextures,
+    DEPTH_PREPASS_FORMAT, NORMAL_PREPASS_FORMAT,
 };
 use bevy_reflect::TypeUuid;
 use bevy_render::{

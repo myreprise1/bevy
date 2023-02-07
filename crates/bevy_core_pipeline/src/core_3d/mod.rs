@@ -24,6 +24,7 @@ pub use main_pass_3d_node::*;
 
 use bevy_app::{App, Plugin};
 use bevy_ecs::prelude::*;
+use bevy_prepass::{node::PrepassNode, DepthPrepass};
 use bevy_render::{
     camera::{Camera, ExtractedCamera},
     extract_component::ExtractComponentPlugin,
@@ -44,11 +45,7 @@ use bevy_render::{
 };
 use bevy_utils::{FloatOrd, HashMap};
 
-use crate::{
-    prepass::{node::PrepassNode, DepthPrepass},
-    tonemapping::TonemappingNode,
-    upscaling::UpscalingNode,
-};
+use crate::{tonemapping::TonemappingNode, upscaling::UpscalingNode};
 
 pub struct Core3dPlugin;
 

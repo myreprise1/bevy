@@ -6,9 +6,9 @@
 //! The prepass currently doesn't work on `WebGL`.
 
 use bevy::{
-    core_pipeline::prepass::{DepthPrepass, NormalPrepass},
     pbr::{NotShadowCaster, PbrPlugin},
     prelude::*,
+    prepass::{DepthPrepass, NormalPrepass},
     reflect::TypeUuid,
     render::render_resource::{AsBindGroup, ShaderRef},
 };

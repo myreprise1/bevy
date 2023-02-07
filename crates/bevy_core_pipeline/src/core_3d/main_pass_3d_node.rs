@@ -1,9 +1,7 @@
-use crate::{
-    core_3d::{AlphaMask3d, Camera3d, Opaque3d, Transparent3d},
-    prepass::{DepthPrepass, NormalPrepass},
-};
+use crate::core_3d::{AlphaMask3d, Camera3d, Opaque3d, Transparent3d};
 use bevy_clear_color::{ClearColor, ClearColorConfig};
 use bevy_ecs::prelude::*;
+use bevy_prepass::{DepthPrepass, NormalPrepass};
 use bevy_render::{
     camera::ExtractedCamera,
     render_graph::{Node, NodeRunError, RenderGraphContext, SlotInfo, SlotType},
