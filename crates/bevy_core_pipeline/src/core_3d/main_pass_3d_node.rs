@@ -1,8 +1,8 @@
 use crate::{
-    clear_color::{ClearColor, ClearColorConfig},
     core_3d::{AlphaMask3d, Camera3d, Opaque3d, Transparent3d},
     prepass::{DepthPrepass, NormalPrepass},
 };
+use bevy_clear_color::{ClearColor, ClearColorConfig};
 use bevy_ecs::prelude::*;
 use bevy_render::{
     camera::ExtractedCamera,

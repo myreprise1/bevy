@@ -4,7 +4,7 @@
 //! edge detection, blur, pixelization, vignette... and countless others.
 
 use bevy::{
-    core_pipeline::clear_color::ClearColorConfig,
+    clear_color::ClearColorConfig,
     prelude::*,
     reflect::TypeUuid,
     render::{

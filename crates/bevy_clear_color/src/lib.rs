@@ -1,3 +1,10 @@
+pub mod prelude {
+    pub use crate::ClearColor;
+}
+
+pub mod plugin;
+pub use plugin::ClearColorPlugin;
+
 use bevy_derive::{Deref, DerefMut};
 use bevy_ecs::prelude::*;
 use bevy_reflect::{Reflect, ReflectDeserialize, ReflectSerialize};

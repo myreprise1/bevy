@@ -3,7 +3,7 @@
 use std::f32::consts::PI;
 
 use bevy::{
-    core_pipeline::clear_color::ClearColorConfig, pbr::CascadeShadowConfigBuilder, prelude::*,
+    clear_color::ClearColorConfig, pbr::CascadeShadowConfigBuilder, prelude::*,
     render::camera::Viewport, window::WindowResized,
 };
 

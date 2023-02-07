@@ -1,6 +1,6 @@
 //! A test to confirm that `bevy` allows minimising the window
 //! This is run in CI to ensure that this doesn't regress again.
-use bevy::{core_pipeline::clear_color::ClearColorConfig, prelude::*};
+use bevy::{clear_color::ClearColorConfig, prelude::*};
 
 fn main() {
     // TODO: Combine this with `resizing` once multiple_windows is simpler than

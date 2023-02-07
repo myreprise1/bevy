@@ -110,6 +110,12 @@ pub mod audio {
 }
 
 #[cfg(feature = "bevy_core_pipeline")]
+pub mod clear_color {
+    //! Clear color rendering.
+    pub use bevy_clear_color::*;
+}
+
+#[cfg(feature = "bevy_core_pipeline")]
 pub mod core_pipeline {
     //! Core render pipeline.
     pub use bevy_core_pipeline::*;

@@ -1,6 +1,6 @@
 //! Renders two 3d passes to the same window from different perspectives.
 
-use bevy::{core_pipeline::clear_color::ClearColorConfig, prelude::*};
+use bevy::{clear_color::ClearColorConfig, prelude::*};
 
 fn main() {
     App::new()
