@@ -1,7 +1,5 @@
-use crate::{
-    clear_color::{ClearColor, ClearColorConfig},
-    core_2d::{camera_2d::Camera2d, Transparent2d},
-};
+use crate::core_2d::{camera_2d::Camera2d, Transparent2d};
+use bevy_clear_color::{ClearColor, ClearColorConfig};
 use bevy_ecs::prelude::*;
 use bevy_render::{
     camera::ExtractedCamera,

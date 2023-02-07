@@ -1,4 +1,5 @@
-use crate::{clear_color::ClearColorConfig, tonemapping::Tonemapping};
+use crate::tonemapping::Tonemapping;
+use bevy_clear_color::ClearColorConfig;
 use bevy_ecs::prelude::*;
 use bevy_reflect::{Reflect, ReflectDeserialize, ReflectSerialize};
 use bevy_render::{

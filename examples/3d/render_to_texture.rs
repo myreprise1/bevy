@@ -3,7 +3,7 @@
 use std::f32::consts::PI;
 
 use bevy::{
-    core_pipeline::clear_color::ClearColorConfig,
+    clear_color::ClearColorConfig,
     prelude::*,
     render::{
         camera::RenderTarget,

@@ -1,5 +1,4 @@
 pub mod bloom;
-pub mod clear_color;
 pub mod core_2d;
 pub mod core_3d;
 pub mod fxaa;
@@ -10,7 +9,6 @@ pub mod upscaling;
 pub mod prelude {
     #[doc(hidden)]
     pub use crate::{
-        clear_color::ClearColor,
         core_2d::{Camera2d, Camera2dBundle},
         core_3d::{Camera3d, Camera3dBundle},
     };
@@ -18,7 +16,6 @@ pub mod prelude {
 
 use crate::{
     bloom::BloomPlugin,
-    clear_color::{ClearColor, ClearColorConfig},
     core_2d::Core2dPlugin,
     core_3d::Core3dPlugin,
     fxaa::FxaaPlugin,
@@ -27,19 +24,14 @@ use crate::{
     upscaling::UpscalingPlugin,
 };
 use bevy_app::{App, Plugin};
-use bevy_render::extract_resource::ExtractResourcePlugin;
 
 #[derive(Default)]
 pub struct CorePipelinePlugin;
 
 impl Plugin for CorePipelinePlugin {
     fn build(&self, app: &mut App) {
-        app.register_type::<ClearColor>()
-            .register_type::<ClearColorConfig>()
-            .register_type::<DepthPrepass>()
+        app.register_type::<DepthPrepass>()
             .register_type::<NormalPrepass>()
-            .init_resource::<ClearColor>()
-            .add_plugin(ExtractResourcePlugin::<ClearColor>::default())
             .add_plugin(Core2dPlugin)
             .add_plugin(Core3dPlugin)
             .add_plugin(TonemappingPlugin)
