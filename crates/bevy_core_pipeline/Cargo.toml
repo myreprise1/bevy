@@ -13,7 +13,7 @@ license = "MIT OR Apache-2.0"
 keywords = ["bevy"]
 
 [features]
-trace = []
+trace = ["bevy_prepass/trace"]
 webgl = []
 
 [dependencies]
@@ -23,6 +23,7 @@ bevy_asset = { path = "../bevy_asset", version = "0.9.0" }
 bevy_clear_color = { path = "../bevy_clear_color", version = "0.9.0" }
 bevy_derive = { path = "../bevy_derive", version = "0.9.0" }
 bevy_ecs = { path = "../bevy_ecs", version = "0.9.0" }
+bevy_prepass = { path = "../bevy_prepass", version = "0.9.0" }
 bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", version = "0.9.0" }
 bevy_reflect = { path = "../bevy_reflect", version = "0.9.0" }
 bevy_render = { path = "../bevy_render", version = "0.9.0" }

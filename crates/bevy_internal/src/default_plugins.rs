@@ -87,6 +87,7 @@ impl PluginGroup for DefaultPlugins {
             group = group
                 .add(bevy_fullscreen_vertex_shader::FullscreenVertexShaderPlugin::default())
                 .add(bevy_clear_color::ClearColorPlugin::default())
+                .add(bevy_prepass::PrepassPlugin::default())
                 .add(bevy_core_pipeline::CorePipelinePlugin::default());
         }
 

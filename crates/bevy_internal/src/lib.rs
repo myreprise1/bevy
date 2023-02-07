@@ -139,6 +139,12 @@ pub mod pbr {
     pub use bevy_pbr::*;
 }
 
+#[cfg(feature = "bevy_core_pipeline")]
+pub mod prepass {
+    //! Prepass utilities.
+    pub use bevy_prepass::*;
+}
+
 #[cfg(feature = "bevy_render")]
 pub mod render {
     //! Cameras, meshes, textures, shaders, and pipelines.

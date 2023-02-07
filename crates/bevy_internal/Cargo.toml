@@ -15,6 +15,7 @@ trace = [
     "bevy_core_pipeline?/trace",
     "bevy_ecs/trace",
     "bevy_log/trace",
+    "bevy_prepass?/trace",
     "bevy_render?/trace",
     "bevy_hierarchy/trace",
     "bevy_winit/trace"
@@ -81,7 +82,8 @@ android_shared_stdcxx = ["bevy_audio/android_shared_stdcxx"]
 bevy_core_pipeline = [
     "dep:bevy_clear_color",
     "dep:bevy_core_pipeline",
-    "dep:bevy_fullscreen_vertex_shader"
+    "dep:bevy_fullscreen_vertex_shader",
+    "dep:bevy_prepass"
 ]
 
 [dependencies]
@@ -111,6 +113,7 @@ bevy_core_pipeline = { path = "../bevy_core_pipeline", optional = true, version 
 bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", optional = true, version = "0.9.0" }
 bevy_gltf = { path = "../bevy_gltf", optional = true, version = "0.9.0" }
 bevy_pbr = { path = "../bevy_pbr", optional = true, version = "0.9.0" }
+bevy_prepass = { path = "../bevy_prepass", optional = true, version = "0.9.0" }
 bevy_render = { path = "../bevy_render", optional = true, version = "0.9.0" }
 bevy_dynamic_plugin = { path = "../bevy_dynamic_plugin", optional = true, version = "0.9.0" }
 bevy_scene = { path = "../bevy_scene", optional = true, version = "0.9.0" }
