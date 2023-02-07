@@ -84,7 +84,9 @@ impl PluginGroup for DefaultPlugins {
 
         #[cfg(feature = "bevy_core_pipeline")]
         {
-            group = group.add(bevy_core_pipeline::CorePipelinePlugin::default());
+            group = group
+                .add(bevy_fullscreen_vertex_shader::FullscreenVertexShaderPlugin::default())
+                .add(bevy_core_pipeline::CorePipelinePlugin::default());
         }
 
         #[cfg(feature = "bevy_sprite")]
