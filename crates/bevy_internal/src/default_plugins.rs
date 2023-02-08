@@ -89,6 +89,7 @@ impl PluginGroup for DefaultPlugins {
                 .add(bevy_clear_color::ClearColorPlugin::default())
                 .add(bevy_prepass::PrepassPlugin::default())
                 .add(bevy_core_pipeline::CorePipelinePlugin::default())
+                .add(bevy_bloom::BloomPlugin::default())
                 .add(bevy_fxaa::FxaaPlugin::default());
         }
 

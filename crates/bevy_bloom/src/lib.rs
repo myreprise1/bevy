@@ -1,6 +1,6 @@
-use crate::{core_2d, core_3d};
 use bevy_app::{App, Plugin};
 use bevy_asset::{load_internal_asset, HandleUntyped};
+use bevy_core_pipeline::{core_2d, core_3d};
 use bevy_ecs::{
     prelude::*,
     query::{QueryItem, QueryState},
@@ -30,6 +30,7 @@ use std::num::NonZeroU32;
 const BLOOM_SHADER_HANDLE: HandleUntyped =
     HandleUntyped::weak_from_u64(Shader::TYPE_UUID, 929599476923908);
 
+#[derive(Default)]
 pub struct BloomPlugin;
 
 impl Plugin for BloomPlugin {
