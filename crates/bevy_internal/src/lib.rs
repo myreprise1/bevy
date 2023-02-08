@@ -121,6 +121,12 @@ pub mod core_pipeline {
     pub use bevy_core_pipeline::*;
 }
 
+#[cfg(feature = "bevy_core_pipeline")]
+pub mod fxaa {
+    //! FXAA support.
+    pub use bevy_fxaa::*;
+}
+
 #[cfg(feature = "bevy_gilrs")]
 pub mod gilrs {
     //! Bevy interface with `GilRs` - "Game Input Library for Rust" - to handle gamepad inputs.

@@ -1,6 +1,6 @@
 use std::sync::Mutex;
 
-use crate::fxaa::{CameraFxaaPipeline, Fxaa, FxaaPipeline};
+use super::{CameraFxaaPipeline, Fxaa, FxaaPipeline};
 use bevy_ecs::prelude::*;
 use bevy_ecs::query::QueryState;
 use bevy_render::{

@@ -80,6 +80,7 @@ android_shared_stdcxx = ["bevy_audio/android_shared_stdcxx"]
 bevy_core_pipeline = [
     "dep:bevy_clear_color",
     "dep:bevy_core_pipeline",
+    "dep:bevy_fxaa",
     "dep:bevy_fullscreen_vertex_shader",
     "dep:bevy_prepass"
 ]
@@ -109,6 +110,7 @@ bevy_audio = { path = "../bevy_audio", optional = true, version = "0.9.0" }
 bevy_clear_color = { path = "../bevy_clear_color", optional = true, version = "0.9.0" }
 bevy_core_pipeline = { path = "../bevy_core_pipeline", optional = true, version = "0.9.0" }
 bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", optional = true, version = "0.9.0" }
+bevy_fxaa = { path = "../bevy_fxaa", optional = true, version = "0.9.0" }
 bevy_gltf = { path = "../bevy_gltf", optional = true, version = "0.9.0" }
 bevy_pbr = { path = "../bevy_pbr", optional = true, version = "0.9.0" }
 bevy_prepass = { path = "../bevy_prepass", optional = true, version = "0.9.0" }
