@@ -1,0 +1,26 @@
+[package]
+name = "bevy_fxaa"
+version = "0.9.0"
+edition = "2021"
+authors = [
+    "Bevy Contributors <bevyengine@gmail.com>",
+    "Carter Anderson <mcanders1@gmail.com>",
+]
+description = "Provides a core render pipeline for Bevy Engine."
+homepage = "https://bevyengine.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy"]
+
+[dependencies]
+# bevy
+bevy_app = { path = "../bevy_app", version = "0.9.0" }
+bevy_asset = { path = "../bevy_asset", version = "0.9.0" }
+bevy_derive = { path = "../bevy_derive", version = "0.9.0" }
+bevy_ecs = { path = "../bevy_ecs", version = "0.9.0" }
+bevy_core_2d = { path = "../bevy_core_2d", version = "0.9.0" }
+bevy_core_3d = { path = "../bevy_core_3d", version = "0.9.0" }
+bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", version = "0.9.0" }
+bevy_reflect = { path = "../bevy_reflect", version = "0.9.0" }
+bevy_render = { path = "../bevy_render", version = "0.9.0" }
+bevy_utils = { path = "../bevy_utils", version = "0.9.0" }

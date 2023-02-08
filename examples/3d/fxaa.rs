@@ -3,7 +3,7 @@
 use std::f32::consts::PI;
 
 use bevy::{
-    core_pipeline::fxaa::{Fxaa, Sensitivity},
+    fxaa::{Fxaa, Sensitivity},
     pbr::CascadeShadowConfigBuilder,
     prelude::*,
     render::{
