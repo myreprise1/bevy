@@ -1,6 +1,6 @@
 //! Illustrates bloom configuration using HDR and emissive materials.
 
-use bevy::{core_pipeline::bloom::BloomSettings, prelude::*};
+use bevy::{bloom::BloomSettings, prelude::*};
 use std::{
     collections::hash_map::DefaultHasher,
     hash::{Hash, Hasher},

@@ -1,4 +1,3 @@
-pub mod bloom;
 pub mod core_2d;
 pub mod core_3d;
 pub mod tonemapping;
@@ -13,8 +12,8 @@ pub mod prelude {
 }
 
 use crate::{
-    bloom::BloomPlugin, core_2d::Core2dPlugin, core_3d::Core3dPlugin,
-    tonemapping::TonemappingPlugin, upscaling::UpscalingPlugin,
+    core_2d::Core2dPlugin, core_3d::Core3dPlugin, tonemapping::TonemappingPlugin,
+    upscaling::UpscalingPlugin,
 };
 use bevy_app::{App, Plugin};
 
@@ -26,7 +25,6 @@ impl Plugin for CorePipelinePlugin {
         app.add_plugin(Core2dPlugin)
             .add_plugin(Core3dPlugin)
             .add_plugin(TonemappingPlugin)
-            .add_plugin(UpscalingPlugin)
-            .add_plugin(BloomPlugin);
+            .add_plugin(UpscalingPlugin);
     }
 }
