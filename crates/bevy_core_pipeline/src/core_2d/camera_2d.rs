@@ -1,4 +1,3 @@
-use crate::tonemapping::Tonemapping;
 use bevy_clear_color::ClearColorConfig;
 use bevy_ecs::prelude::*;
 use bevy_reflect::Reflect;
@@ -8,6 +7,7 @@ use bevy_render::{
     primitives::Frustum,
     view::VisibleEntities,
 };
+use bevy_tonemapping::Tonemapping;
 use bevy_transform::prelude::{GlobalTransform, Transform};
 
 #[derive(Component, Default, Reflect, Clone, ExtractComponent)]

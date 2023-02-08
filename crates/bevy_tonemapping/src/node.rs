@@ -1,8 +1,7 @@
 use std::sync::Mutex;
 
-use crate::tonemapping::{TonemappingPipeline, ViewTonemappingPipeline};
-use bevy_ecs::prelude::*;
-use bevy_ecs::query::QueryState;
+use super::{TonemappingPipeline, ViewTonemappingPipeline};
+use bevy_ecs::{prelude::*, query::QueryState};
 use bevy_render::{
     render_graph::{Node, NodeRunError, RenderGraphContext, SlotInfo, SlotType},
     render_resource::{

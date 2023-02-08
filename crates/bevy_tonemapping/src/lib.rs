@@ -3,11 +3,14 @@ use bevy_asset::{load_internal_asset, HandleUntyped};
 use bevy_ecs::prelude::*;
 use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_reflect::{Reflect, TypeUuid};
-use bevy_render::camera::Camera;
-use bevy_render::extract_component::{ExtractComponent, ExtractComponentPlugin};
-use bevy_render::renderer::RenderDevice;
-use bevy_render::view::ViewTarget;
-use bevy_render::{render_resource::*, RenderApp, RenderSet};
+use bevy_render::{
+    camera::Camera,
+    extract_component::{ExtractComponent, ExtractComponentPlugin},
+    render_resource::*,
+    renderer::RenderDevice,
+    view::ViewTarget,
+    RenderApp, RenderSet,
+};
 
 mod node;
 
@@ -19,6 +22,7 @@ const TONEMAPPING_SHADER_HANDLE: HandleUntyped =
 const TONEMAPPING_SHARED_SHADER_HANDLE: HandleUntyped =
     HandleUntyped::weak_from_u64(Shader::TYPE_UUID, 2499430578245347910);
 
+#[derive(Default)]
 pub struct TonemappingPlugin;
 
 impl Plugin for TonemappingPlugin {

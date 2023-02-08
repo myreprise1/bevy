@@ -1,6 +1,5 @@
 pub mod core_2d;
 pub mod core_3d;
-pub mod tonemapping;
 
 pub mod prelude {
     #[doc(hidden)]
@@ -10,7 +9,7 @@ pub mod prelude {
     };
 }
 
-use crate::{core_2d::Core2dPlugin, core_3d::Core3dPlugin, tonemapping::TonemappingPlugin};
+use crate::{core_2d::Core2dPlugin, core_3d::Core3dPlugin};
 use bevy_app::{App, Plugin};
 
 #[derive(Default)]
@@ -18,8 +17,6 @@ pub struct CorePipelinePlugin;
 
 impl Plugin for CorePipelinePlugin {
     fn build(&self, app: &mut App) {
-        app.add_plugin(Core2dPlugin)
-            .add_plugin(Core3dPlugin)
-            .add_plugin(TonemappingPlugin);
+        app.add_plugin(Core2dPlugin).add_plugin(Core3dPlugin);
     }
 }
