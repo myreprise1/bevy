@@ -1,4 +1,4 @@
-use crate::core_3d::{AlphaMask3d, Camera3d, Opaque3d, Transparent3d};
+use super::{AlphaMask3d, Camera3d, Opaque3d, Transparent3d};
 use bevy_clear_color::{ClearColor, ClearColorConfig};
 use bevy_ecs::prelude::*;
 use bevy_prepass::{DepthPrepass, NormalPrepass};

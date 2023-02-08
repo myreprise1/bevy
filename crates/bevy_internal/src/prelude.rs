@@ -25,7 +25,11 @@ pub use crate::clear_color::prelude::*;
 
 #[doc(hidden)]
 #[cfg(feature = "bevy_core_pipeline")]
-pub use crate::core_pipeline::prelude::*;
+pub use crate::core_2d::prelude::*;
+
+#[doc(hidden)]
+#[cfg(feature = "bevy_core_pipeline")]
+pub use crate::core_3d::prelude::*;
 
 #[doc(hidden)]
 #[cfg(feature = "bevy_pbr")]

@@ -3,7 +3,7 @@ use bevy_asset::{
     AssetIoError, AssetLoader, AssetPath, BoxedFuture, Handle, LoadContext, LoadedAsset,
 };
 use bevy_core::Name;
-use bevy_core_pipeline::prelude::Camera3d;
+use bevy_core_3d::Camera3d;
 use bevy_ecs::{entity::Entity, prelude::FromWorld, world::World};
 use bevy_hierarchy::{BuildWorldChildren, WorldChildBuilder};
 use bevy_log::warn;
@@ -754,7 +754,7 @@ fn load_node(
             VisibleEntities::default(),
             Frustum::default(),
             Camera3d::default(),
-            CameraRenderGraph::new(bevy_core_pipeline::core_3d::graph::NAME),
+            CameraRenderGraph::new(bevy_core_3d::graph::NAME),
         ));
 
         *active_camera_found = true;

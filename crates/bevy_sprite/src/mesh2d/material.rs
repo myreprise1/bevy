@@ -1,6 +1,6 @@
 use bevy_app::{App, Plugin};
 use bevy_asset::{AddAsset, AssetEvent, AssetServer, Assets, Handle};
-use bevy_core_pipeline::core_2d::Transparent2d;
+use bevy_core_2d::Transparent2d;
 use bevy_derive::{Deref, DerefMut};
 use bevy_ecs::{
     prelude::*,

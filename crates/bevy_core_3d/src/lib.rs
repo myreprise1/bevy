@@ -1,3 +1,7 @@
+pub mod prelude {
+    pub use crate::{Camera3d, Camera3dBundle};
+}
+
 mod camera_3d;
 mod main_pass_3d_node;
 
@@ -47,6 +51,7 @@ use bevy_tonemapping::TonemappingNode;
 use bevy_upscaling::UpscalingNode;
 use bevy_utils::{FloatOrd, HashMap};
 
+#[derive(Default)]
 pub struct Core3dPlugin;
 
 impl Plugin for Core3dPlugin {

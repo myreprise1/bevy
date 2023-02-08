@@ -6,7 +6,7 @@ use crate::{
     SHADOW_SHADER_HANDLE,
 };
 use bevy_asset::Handle;
-use bevy_core_pipeline::core_3d::Transparent3d;
+use bevy_core_3d::Transparent3d;
 use bevy_ecs::{
     prelude::*,
     system::{lifetimeless::*, SystemParamItem},

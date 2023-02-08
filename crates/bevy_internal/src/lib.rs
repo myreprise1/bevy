@@ -122,9 +122,15 @@ pub mod clear_color {
 }
 
 #[cfg(feature = "bevy_core_pipeline")]
-pub mod core_pipeline {
-    //! Core render pipeline.
-    pub use bevy_core_pipeline::*;
+pub mod core_2d {
+    //! Core 2D render pipeline.
+    pub use bevy_core_2d::*;
+}
+
+#[cfg(feature = "bevy_core_pipeline")]
+pub mod core_3d {
+    //! Core 3D render pipeline.
+    pub use bevy_core_3d::*;
 }
 
 #[cfg(feature = "bevy_core_pipeline")]
