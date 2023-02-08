@@ -3,7 +3,6 @@ pub mod skinning;
 pub use wgpu::PrimitiveTopology;
 
 use crate::{
-    primitives::Aabb,
     render_asset::{PrepareAssetError, RenderAsset},
     render_resource::{Buffer, VertexBufferLayout},
     renderer::RenderDevice,
@@ -12,6 +11,7 @@ use bevy_core::cast_slice;
 use bevy_derive::EnumVariantMeta;
 use bevy_ecs::system::{lifetimeless::SRes, SystemParamItem};
 use bevy_math::*;
+use bevy_primitives::Aabb;
 use bevy_reflect::TypeUuid;
 use bevy_utils::{tracing::error, Hashed};
 use std::{collections::BTreeMap, hash::Hash, iter::FusedIterator};

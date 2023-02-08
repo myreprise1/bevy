@@ -1,10 +1,10 @@
 use bevy_clear_color::ClearColorConfig;
 use bevy_ecs::prelude::*;
+use bevy_primitives::Frustum;
 use bevy_reflect::{Reflect, ReflectDeserialize, ReflectSerialize};
 use bevy_render::{
     camera::{Camera, CameraRenderGraph, Projection},
     extract_component::ExtractComponent,
-    primitives::Frustum,
     render_resource::LoadOp,
     view::VisibleEntities,
 };

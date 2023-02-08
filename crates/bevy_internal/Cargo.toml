@@ -95,6 +95,11 @@ bevy_core_pipeline = [
     "dep:bevy_upscaling"
 ]
 
+bevy_render = [
+    "dep:bevy_render",
+    "dep:bevy_primitives",
+]
+
 [dependencies]
 # bevy
 bevy_app = { path = "../bevy_app", version = "0.9.0" }
@@ -126,6 +131,7 @@ bevy_fxaa = { path = "../bevy_fxaa", optional = true, version = "0.9.0" }
 bevy_gltf = { path = "../bevy_gltf", optional = true, version = "0.9.0" }
 bevy_pbr = { path = "../bevy_pbr", optional = true, version = "0.9.0" }
 bevy_prepass = { path = "../bevy_prepass", optional = true, version = "0.9.0" }
+bevy_primitives = { path = "../bevy_primitives", optional = true, version = "0.9.0" }
 bevy_render = { path = "../bevy_render", optional = true, version = "0.9.0" }
 bevy_dynamic_plugin = { path = "../bevy_dynamic_plugin", optional = true, version = "0.9.0" }
 bevy_scene = { path = "../bevy_scene", optional = true, version = "0.9.0" }

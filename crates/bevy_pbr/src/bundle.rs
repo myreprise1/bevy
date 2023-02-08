@@ -4,10 +4,10 @@ use crate::{
 };
 use bevy_asset::Handle;
 use bevy_ecs::{bundle::Bundle, component::Component, prelude::Entity, reflect::ReflectComponent};
+use bevy_primitives::{CascadesFrusta, CubemapFrusta, Frustum};
 use bevy_reflect::Reflect;
 use bevy_render::{
     mesh::Mesh,
-    primitives::{CascadesFrusta, CubemapFrusta, Frustum},
     view::{ComputedVisibility, Visibility, VisibleEntities},
 };
 use bevy_transform::components::{GlobalTransform, Transform};

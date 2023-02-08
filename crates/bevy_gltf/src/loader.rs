@@ -12,6 +12,7 @@ use bevy_pbr::{
     AlphaMode, DirectionalLight, DirectionalLightBundle, PbrBundle, PointLight, PointLightBundle,
     SpotLight, SpotLightBundle, StandardMaterial,
 };
+use bevy_primitives::{Aabb, Frustum};
 use bevy_render::{
     camera::{
         Camera, CameraRenderGraph, OrthographicProjection, PerspectiveProjection, Projection,
@@ -23,7 +24,6 @@ use bevy_render::{
         Indices, Mesh, VertexAttributeValues,
     },
     prelude::SpatialBundle,
-    primitives::{Aabb, Frustum},
     render_resource::{AddressMode, Face, FilterMode, PrimitiveTopology, SamplerDescriptor},
     renderer::RenderDevice,
     texture::{CompressedImageFormats, Image, ImageSampler, ImageType, TextureError},

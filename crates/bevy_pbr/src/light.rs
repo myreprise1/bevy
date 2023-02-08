@@ -2,13 +2,13 @@ use std::collections::HashSet;
 
 use bevy_ecs::prelude::*;
 use bevy_math::{Mat4, UVec2, UVec3, Vec2, Vec3, Vec3A, Vec3Swizzles, Vec4, Vec4Swizzles};
+use bevy_primitives::{Aabb, CascadesFrusta, CubemapFrusta, Frustum, Plane, Sphere};
 use bevy_reflect::prelude::*;
 use bevy_render::{
     camera::Camera,
     color::Color,
     extract_resource::ExtractResource,
     prelude::Projection,
-    primitives::{Aabb, CascadesFrusta, CubemapFrusta, Frustum, Plane, Sphere},
     render_resource::BufferBindingType,
     renderer::RenderDevice,
     view::{ComputedVisibility, RenderLayers, VisibleEntities},

@@ -53,6 +53,12 @@ pub mod ptr {
     pub use bevy_ptr::*;
 }
 
+#[cfg(feature = "bevy_render")]
+pub mod primitives {
+    //! Utilities for working with untyped pointers in a more safe way.
+    pub use bevy_primitives::*;
+}
+
 pub mod reflect {
     // TODO: remove these renames once TypeRegistryArc is no longer required
     //! Type reflection used for dynamically interacting with rust types.

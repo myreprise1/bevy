@@ -11,7 +11,6 @@ pub mod extract_resource;
 pub mod globals;
 pub mod mesh;
 pub mod pipelined_rendering;
-pub mod primitives;
 pub mod render_asset;
 pub mod render_graph;
 pub mod render_phase;
@@ -297,11 +296,7 @@ impl Plugin for RenderPlugin {
             .add_plugin(MeshPlugin)
             .add_plugin(GlobalsPlugin);
 
-        app.register_type::<color::Color>()
-            .register_type::<primitives::Aabb>()
-            .register_type::<primitives::CascadesFrusta>()
-            .register_type::<primitives::CubemapFrusta>()
-            .register_type::<primitives::Frustum>();
+        app.register_type::<color::Color>();
     }
 }
 
