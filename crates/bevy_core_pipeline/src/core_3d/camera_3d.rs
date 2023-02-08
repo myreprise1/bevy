@@ -1,4 +1,3 @@
-use crate::tonemapping::Tonemapping;
 use bevy_clear_color::ClearColorConfig;
 use bevy_ecs::prelude::*;
 use bevy_reflect::{Reflect, ReflectDeserialize, ReflectSerialize};
@@ -9,6 +8,7 @@ use bevy_render::{
     render_resource::LoadOp,
     view::VisibleEntities,
 };
+use bevy_tonemapping::Tonemapping;
 use bevy_transform::prelude::{GlobalTransform, Transform};
 use serde::{Deserialize, Serialize};
 

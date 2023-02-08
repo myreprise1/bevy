@@ -32,11 +32,10 @@ use bevy_render::{
     render_resource::CachedRenderPipelineId,
     Extract, ExtractSchedule, RenderApp, RenderSet,
 };
+use bevy_tonemapping::TonemappingNode;
 use bevy_upscaling::UpscalingNode;
 use bevy_utils::FloatOrd;
 use std::ops::Range;
-
-use crate::tonemapping::TonemappingNode;
 
 pub struct Core2dPlugin;
 

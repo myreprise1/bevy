@@ -1,6 +1,6 @@
 use bevy_app::{App, Plugin};
 use bevy_asset::{AddAsset, AssetEvent, AssetServer, Assets, Handle};
-use bevy_core_pipeline::{core_2d::Transparent2d, tonemapping::Tonemapping};
+use bevy_core_pipeline::core_2d::Transparent2d;
 use bevy_derive::{Deref, DerefMut};
 use bevy_ecs::{
     prelude::*,
@@ -31,6 +31,7 @@ use bevy_render::{
     view::{ComputedVisibility, ExtractedView, Msaa, Visibility, VisibleEntities},
     Extract, ExtractSchedule, RenderApp, RenderSet,
 };
+use bevy_tonemapping::Tonemapping;
 use bevy_transform::components::{GlobalTransform, Transform};
 use bevy_utils::{FloatOrd, HashMap, HashSet};
 use std::hash::Hash;
