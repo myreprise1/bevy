@@ -1,6 +1,6 @@
 use bevy_app::Plugin;
 use bevy_asset::{load_internal_asset, AssetServer, Handle, HandleUntyped};
-use bevy_core_pipeline::prelude::Camera3d;
+use bevy_core_3d::Camera3d;
 use bevy_ecs::{
     prelude::*,
     system::{

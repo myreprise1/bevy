@@ -6,7 +6,7 @@
 use std::f32::consts::PI;
 
 use bevy::{
-    core_pipeline::core_2d::Transparent2d,
+    core_2d::Transparent2d,
     prelude::*,
     reflect::TypeUuid,
     render::{

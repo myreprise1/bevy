@@ -1,6 +1,5 @@
 use bevy_app::prelude::*;
 use bevy_asset::{load_internal_asset, HandleUntyped};
-use bevy_core_pipeline::{core_2d, core_3d};
 use bevy_derive::Deref;
 use bevy_ecs::prelude::*;
 use bevy_reflect::{
@@ -98,47 +97,51 @@ impl Plugin for FxaaPlugin {
         {
             let fxaa_node = FxaaNode::new(&mut render_app.world);
             let mut binding = render_app.world.resource_mut::<RenderGraph>();
-            let graph = binding.get_sub_graph_mut(core_3d::graph::NAME).unwrap();
+            let graph = binding
+                .get_sub_graph_mut(bevy_core_3d::graph::NAME)
+                .unwrap();
 
-            graph.add_node(core_3d::graph::node::FXAA, fxaa_node);
+            graph.add_node(bevy_core_3d::graph::node::FXAA, fxaa_node);
 
             graph.add_slot_edge(
                 graph.input_node().id,
-                core_3d::graph::input::VIEW_ENTITY,
-                core_3d::graph::node::FXAA,
+                bevy_core_3d::graph::input::VIEW_ENTITY,
+                bevy_core_3d::graph::node::FXAA,
                 FxaaNode::IN_VIEW,
             );
 
             graph.add_node_edge(
-                core_3d::graph::node::TONEMAPPING,
-                core_3d::graph::node::FXAA,
+                bevy_core_3d::graph::node::TONEMAPPING,
+                bevy_core_3d::graph::node::FXAA,
             );
             graph.add_node_edge(
-                core_3d::graph::node::FXAA,
-                core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+                bevy_core_3d::graph::node::FXAA,
+                bevy_core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             );
         }
         {
             let fxaa_node = FxaaNode::new(&mut render_app.world);
             let mut binding = render_app.world.resource_mut::<RenderGraph>();
-            let graph = binding.get_sub_graph_mut(core_2d::graph::NAME).unwrap();
+            let graph = binding
+                .get_sub_graph_mut(bevy_core_2d::graph::NAME)
+                .unwrap();
 
-            graph.add_node(core_2d::graph::node::FXAA, fxaa_node);
+            graph.add_node(bevy_core_2d::graph::node::FXAA, fxaa_node);
 
             graph.add_slot_edge(
                 graph.input_node().id,
-                core_2d::graph::input::VIEW_ENTITY,
-                core_2d::graph::node::FXAA,
+                bevy_core_2d::graph::input::VIEW_ENTITY,
+                bevy_core_2d::graph::node::FXAA,
                 FxaaNode::IN_VIEW,
             );
 
             graph.add_node_edge(
-                core_2d::graph::node::TONEMAPPING,
-                core_2d::graph::node::FXAA,
+                bevy_core_2d::graph::node::TONEMAPPING,
+                bevy_core_2d::graph::node::FXAA,
             );
             graph.add_node_edge(
-                core_2d::graph::node::FXAA,
-                core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+                bevy_core_2d::graph::node::FXAA,
+                bevy_core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             );
         }
     }

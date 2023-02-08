@@ -23,7 +23,7 @@ use bevy_render::{color::Color, extract_component::ExtractComponent, prelude::Ca
 /// ```
 /// # use bevy_ecs::prelude::*;
 /// # use bevy_render::prelude::*;
-/// # use bevy_core_pipeline::prelude::*;
+/// # use bevy_core_3d::prelude::*;
 /// # use bevy_pbr::prelude::*;
 /// # fn system(mut commands: Commands) {
 /// commands.spawn((

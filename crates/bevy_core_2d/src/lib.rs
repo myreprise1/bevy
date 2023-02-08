@@ -1,3 +1,7 @@
+pub mod prelude {
+    pub use crate::{Camera2d, Camera2dBundle};
+}
+
 mod camera_2d;
 mod main_pass_2d_node;
 
@@ -37,6 +41,7 @@ use bevy_upscaling::UpscalingNode;
 use bevy_utils::FloatOrd;
 use std::ops::Range;
 
+#[derive(Default)]
 pub struct Core2dPlugin;
 
 impl Plugin for Core2dPlugin {

@@ -12,7 +12,8 @@ categories = ["game-engines", "graphics", "gui", "rendering"]
 [features]
 trace = [
     "bevy_app/trace",
-    "bevy_core_pipeline?/trace",
+    "bevy_core_2d?/trace",
+    "bevy_core_3d?/trace",
     "bevy_bloom?/trace",
     "bevy_ecs/trace",
     "bevy_log/trace",
@@ -66,7 +67,12 @@ x11 = ["bevy_winit/x11"]
 subpixel_glyph_atlas = ["bevy_text/subpixel_glyph_atlas"]
 
 # Optimise for WebGL2
-webgl = ["bevy_core_pipeline?/webgl", "bevy_pbr?/webgl", "bevy_render?/webgl"]
+webgl = [
+    "bevy_core_2d?/webgl",
+    "bevy_core_3d?/webgl",
+    "bevy_pbr?/webgl",
+    "bevy_render?/webgl"
+]
 
 # enable systems that allow for automated testing on CI
 bevy_ci_testing = ["bevy_app/bevy_ci_testing", "bevy_render/ci_limits"]
@@ -83,7 +89,8 @@ android_shared_stdcxx = ["bevy_audio/android_shared_stdcxx"]
 bevy_core_pipeline = [
     "dep:bevy_bloom",
     "dep:bevy_clear_color",
-    "dep:bevy_core_pipeline",
+    "dep:bevy_core_2d",
+    "dep:bevy_core_3d",
     "dep:bevy_fxaa",
     "dep:bevy_fullscreen_vertex_shader",
     "dep:bevy_prepass",
@@ -115,7 +122,8 @@ bevy_asset = { path = "../bevy_asset", optional = true, version = "0.9.0" }
 bevy_audio = { path = "../bevy_audio", optional = true, version = "0.9.0" }
 bevy_bloom = { path = "../bevy_bloom", optional = true, version = "0.9.0" }
 bevy_clear_color = { path = "../bevy_clear_color", optional = true, version = "0.9.0" }
-bevy_core_pipeline = { path = "../bevy_core_pipeline", optional = true, version = "0.9.0" }
+bevy_core_2d = { path = "../bevy_core_2d", optional = true, version = "0.9.0" }
+bevy_core_3d = { path = "../bevy_core_3d", optional = true, version = "0.9.0" }
 bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", optional = true, version = "0.9.0" }
 bevy_fxaa = { path = "../bevy_fxaa", optional = true, version = "0.9.0" }
 bevy_gltf = { path = "../bevy_gltf", optional = true, version = "0.9.0" }

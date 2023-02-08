@@ -1,7 +1,8 @@
 mod pipeline;
 mod render_pass;
 
-use bevy_core_pipeline::{core_2d::Camera2d, core_3d::Camera3d};
+use bevy_core_2d::Camera2d;
+use bevy_core_3d::Camera3d;
 use bevy_render::ExtractSchedule;
 use bevy_window::{PrimaryWindow, Window};
 pub use pipeline::*;
@@ -90,53 +91,53 @@ pub fn build_ui_render(app: &mut App) {
     let ui_graph_3d = get_ui_graph(render_app);
     let mut graph = render_app.world.resource_mut::<RenderGraph>();
 
-    if let Some(graph_2d) = graph.get_sub_graph_mut(bevy_core_pipeline::core_2d::graph::NAME) {
+    if let Some(graph_2d) = graph.get_sub_graph_mut(bevy_core_2d::graph::NAME) {
         graph_2d.add_sub_graph(draw_ui_graph::NAME, ui_graph_2d);
         graph_2d.add_node(
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::new(draw_ui_graph::NAME),
         );
         graph_2d.add_node_edge(
-            bevy_core_pipeline::core_2d::graph::node::MAIN_PASS,
+            bevy_core_2d::graph::node::MAIN_PASS,
             draw_ui_graph::node::UI_PASS,
         );
         graph_2d.add_slot_edge(
             graph_2d.input_node().id,
-            bevy_core_pipeline::core_2d::graph::input::VIEW_ENTITY,
+            bevy_core_2d::graph::input::VIEW_ENTITY,
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::IN_VIEW,
         );
         graph_2d.add_node_edge(
-            bevy_core_pipeline::core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+            bevy_core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             draw_ui_graph::node::UI_PASS,
         );
         graph_2d.add_node_edge(
             draw_ui_graph::node::UI_PASS,
-            bevy_core_pipeline::core_2d::graph::node::UPSCALING,
+            bevy_core_2d::graph::node::UPSCALING,
         );
     }
 
-    if let Some(graph_3d) = graph.get_sub_graph_mut(bevy_core_pipeline::core_3d::graph::NAME) {
+    if let Some(graph_3d) = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME) {
         graph_3d.add_sub_graph(draw_ui_graph::NAME, ui_graph_3d);
         graph_3d.add_node(
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::new(draw_ui_graph::NAME),
         );
         graph_3d.add_node_edge(
-            bevy_core_pipeline::core_3d::graph::node::MAIN_PASS,
+            bevy_core_3d::graph::node::MAIN_PASS,
             draw_ui_graph::node::UI_PASS,
         );
         graph_3d.add_node_edge(
-            bevy_core_pipeline::core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+            bevy_core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             draw_ui_graph::node::UI_PASS,
         );
         graph_3d.add_node_edge(
             draw_ui_graph::node::UI_PASS,
-            bevy_core_pipeline::core_3d::graph::node::UPSCALING,
+            bevy_core_3d::graph::node::UPSCALING,
         );
         graph_3d.add_slot_edge(
             graph_3d.input_node().id,
-            bevy_core_pipeline::core_3d::graph::input::VIEW_ENTITY,
+            bevy_core_3d::graph::input::VIEW_ENTITY,
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::IN_VIEW,
         );

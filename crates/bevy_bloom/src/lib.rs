@@ -1,6 +1,5 @@
 use bevy_app::{App, Plugin};
 use bevy_asset::{load_internal_asset, HandleUntyped};
-use bevy_core_pipeline::{core_2d, core_3d};
 use bevy_ecs::{
     prelude::*,
     query::{QueryItem, QueryState},
@@ -54,48 +53,44 @@ impl Plugin for BloomPlugin {
         {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
-            let draw_3d_graph = graph
-                .get_sub_graph_mut(crate::core_3d::graph::NAME)
-                .unwrap();
-            draw_3d_graph.add_node(core_3d::graph::node::BLOOM, bloom_node);
+            let draw_3d_graph = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME).unwrap();
+            draw_3d_graph.add_node(bevy_core_3d::graph::node::BLOOM, bloom_node);
             draw_3d_graph.add_slot_edge(
                 draw_3d_graph.input_node().id,
-                crate::core_3d::graph::input::VIEW_ENTITY,
-                core_3d::graph::node::BLOOM,
+                bevy_core_3d::graph::input::VIEW_ENTITY,
+                bevy_core_3d::graph::node::BLOOM,
                 BloomNode::IN_VIEW,
             );
             // MAIN_PASS -> BLOOM -> TONEMAPPING
             draw_3d_graph.add_node_edge(
-                crate::core_3d::graph::node::MAIN_PASS,
-                core_3d::graph::node::BLOOM,
+                bevy_core_3d::graph::node::MAIN_PASS,
+                bevy_core_3d::graph::node::BLOOM,
             );
             draw_3d_graph.add_node_edge(
-                core_3d::graph::node::BLOOM,
-                crate::core_3d::graph::node::TONEMAPPING,
+                bevy_core_3d::graph::node::BLOOM,
+                bevy_core_3d::graph::node::TONEMAPPING,
             );
         }
 
         {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
-            let draw_2d_graph = graph
-                .get_sub_graph_mut(crate::core_2d::graph::NAME)
-                .unwrap();
-            draw_2d_graph.add_node(core_2d::graph::node::BLOOM, bloom_node);
+            let draw_2d_graph = graph.get_sub_graph_mut(bevy_core_2d::graph::NAME).unwrap();
+            draw_2d_graph.add_node(bevy_core_2d::graph::node::BLOOM, bloom_node);
             draw_2d_graph.add_slot_edge(
                 draw_2d_graph.input_node().id,
-                crate::core_2d::graph::input::VIEW_ENTITY,
-                core_2d::graph::node::BLOOM,
+                bevy_core_2d::graph::input::VIEW_ENTITY,
+                bevy_core_2d::graph::node::BLOOM,
                 BloomNode::IN_VIEW,
             );
             // MAIN_PASS -> BLOOM -> TONEMAPPING
             draw_2d_graph.add_node_edge(
-                crate::core_2d::graph::node::MAIN_PASS,
-                core_2d::graph::node::BLOOM,
+                bevy_core_2d::graph::node::MAIN_PASS,
+                bevy_core_2d::graph::node::BLOOM,
             );
             draw_2d_graph.add_node_edge(
-                core_2d::graph::node::BLOOM,
-                crate::core_2d::graph::node::TONEMAPPING,
+                bevy_core_2d::graph::node::BLOOM,
+                bevy_core_2d::graph::node::TONEMAPPING,
             );
         }
     }

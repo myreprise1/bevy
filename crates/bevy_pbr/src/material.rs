@@ -4,7 +4,7 @@ use crate::{
 };
 use bevy_app::{App, Plugin};
 use bevy_asset::{AddAsset, AssetEvent, AssetServer, Assets, Handle};
-use bevy_core_pipeline::core_3d::{AlphaMask3d, Opaque3d, Transparent3d};
+use bevy_core_3d::{AlphaMask3d, Opaque3d, Transparent3d};
 use bevy_derive::{Deref, DerefMut};
 use bevy_ecs::{
     prelude::*,
