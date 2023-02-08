@@ -43,9 +43,10 @@ use bevy_render::{
     view::ViewDepthTexture,
     Extract, ExtractSchedule, RenderApp, RenderSet,
 };
+use bevy_upscaling::UpscalingNode;
 use bevy_utils::{FloatOrd, HashMap};
 
-use crate::{tonemapping::TonemappingNode, upscaling::UpscalingNode};
+use crate::tonemapping::TonemappingNode;
 
 pub struct Core3dPlugin;
 

@@ -86,7 +86,8 @@ bevy_core_pipeline = [
     "dep:bevy_core_pipeline",
     "dep:bevy_fxaa",
     "dep:bevy_fullscreen_vertex_shader",
-    "dep:bevy_prepass"
+    "dep:bevy_prepass",
+    "dep:bevy_upscaling"
 ]
 
 [dependencies]
@@ -125,5 +126,6 @@ bevy_scene = { path = "../bevy_scene", optional = true, version = "0.9.0" }
 bevy_sprite = { path = "../bevy_sprite", optional = true, version = "0.9.0" }
 bevy_text = { path = "../bevy_text", optional = true, version = "0.9.0" }
 bevy_ui = { path = "../bevy_ui", optional = true, version = "0.9.0" }
+bevy_upscaling = { path = "../bevy_upscaling", optional = true, version = "0.9.0" }
 bevy_winit = { path = "../bevy_winit", optional = true, version = "0.9.0" }
 bevy_gilrs = { path = "../bevy_gilrs", optional = true, version = "0.9.0" }
