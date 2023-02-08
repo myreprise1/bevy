@@ -1,0 +1,18 @@
+[package]
+name = "bevy_globals"
+version = "0.9.0"
+edition = "2021"
+description = "Provides global utilites useful for writing shaders."
+homepage = "https://bevyengine.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy"]
+
+[dependencies]
+# # bevy
+bevy_app = { path = "../bevy_app", version = "0.9.0" }
+bevy_core = { path = "../bevy_core", version = "0.9.0" }
+bevy_ecs = { path = "../bevy_ecs", version = "0.9.0" }
+bevy_reflect = { path = "../bevy_reflect", version = "0.9.0", features = ["bevy"] }
+bevy_render = { path = "../bevy_render", version = "0.9.0" }
+bevy_time = { path = "../bevy_time", version = "0.9.0" }

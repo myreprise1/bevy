@@ -71,6 +71,7 @@ impl PluginGroup for DefaultPlugins {
         {
             group = group
                 .add(bevy_render::RenderPlugin::default())
+                .add(bevy_globals::GlobalsPlugin::default())
                 .add(bevy_primitives::PrimitivesPlugin::default())
                 // NOTE: Load this after renderer initialization so that it knows about the supported
                 // compressed texture formats

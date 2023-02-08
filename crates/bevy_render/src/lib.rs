@@ -8,7 +8,6 @@ pub mod color;
 pub mod extract_component;
 mod extract_param;
 pub mod extract_resource;
-pub mod globals;
 pub mod mesh;
 pub mod pipelined_rendering;
 pub mod render_asset;
@@ -39,7 +38,6 @@ pub mod prelude {
 }
 
 use bevy_window::{PrimaryWindow, RawHandleWrapper};
-use globals::GlobalsPlugin;
 pub use once_cell;
 
 use crate::{
@@ -293,8 +291,7 @@ impl Plugin for RenderPlugin {
             .add_plugin(WindowRenderPlugin)
             .add_plugin(CameraPlugin)
             .add_plugin(ViewPlugin)
-            .add_plugin(MeshPlugin)
-            .add_plugin(GlobalsPlugin);
+            .add_plugin(MeshPlugin);
 
         app.register_type::<color::Color>();
     }

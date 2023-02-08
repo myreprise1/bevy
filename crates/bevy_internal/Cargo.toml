@@ -96,6 +96,7 @@ bevy_core_pipeline = [
 ]
 
 bevy_render = [
+    "dep:bevy_globals",
     "dep:bevy_render",
     "dep:bevy_primitives",
 ]
@@ -127,6 +128,7 @@ bevy_clear_color = { path = "../bevy_clear_color", optional = true, version = "0
 bevy_core_2d = { path = "../bevy_core_2d", optional = true, version = "0.9.0" }
 bevy_core_3d = { path = "../bevy_core_3d", optional = true, version = "0.9.0" }
 bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", optional = true, version = "0.9.0" }
+bevy_globals = { path = "../bevy_globals", optional = true, version = "0.9.0" }
 bevy_fxaa = { path = "../bevy_fxaa", optional = true, version = "0.9.0" }
 bevy_gltf = { path = "../bevy_gltf", optional = true, version = "0.9.0" }
 bevy_pbr = { path = "../bevy_pbr", optional = true, version = "0.9.0" }

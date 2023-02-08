@@ -1,15 +1,16 @@
-use crate::{
+use bevy_app::{App, Plugin};
+use bevy_core::FrameCount;
+use bevy_ecs::prelude::*;
+use bevy_reflect::Reflect;
+use bevy_render::{
     extract_resource::ExtractResource,
     render_resource::{ShaderType, UniformBuffer},
     renderer::{RenderDevice, RenderQueue},
     Extract, ExtractSchedule, RenderApp, RenderSet,
 };
-use bevy_app::{App, Plugin};
-use bevy_core::FrameCount;
-use bevy_ecs::prelude::*;
-use bevy_reflect::Reflect;
 use bevy_time::Time;
 
+#[derive(Default)]
 pub struct GlobalsPlugin;
 
 impl Plugin for GlobalsPlugin {
