@@ -5,7 +5,6 @@
 mod app;
 mod plugin;
 mod plugin_group;
-mod schedule_runner;
 
 #[cfg(feature = "bevy_ci_testing")]
 mod ci_testing;
@@ -14,7 +13,6 @@ pub use app::*;
 pub use bevy_derive::DynamicPlugin;
 pub use plugin::*;
 pub use plugin_group::*;
-pub use schedule_runner::*;
 
 #[allow(missing_docs)]
 pub mod prelude {

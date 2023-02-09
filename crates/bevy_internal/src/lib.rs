@@ -73,6 +73,11 @@ pub mod scene {
     pub use bevy_scene::*;
 }
 
+pub mod schedule_runner {
+    //! Schedule runner utilitites.
+    pub use bevy_schedule_runner::*;
+}
+
 pub mod tasks {
     //! Pools for async, IO, and compute tasks.
     pub use bevy_tasks::*;

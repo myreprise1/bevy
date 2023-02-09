@@ -64,7 +64,7 @@ pub struct App {
     /// The [runner function](Self::set_runner) is primarily responsible for managing
     /// the application's event loop and advancing the [`Schedule`].
     /// Typically, it is not configured manually, but set by one of Bevy's built-in plugins.
-    /// See `bevy::winit::WinitPlugin` and [`ScheduleRunnerPlugin`](crate::schedule_runner::ScheduleRunnerPlugin).
+    /// See `bevy::winit::WinitPlugin` and `bevy::schedule_runner::ScheduleRunnerPlugin`.
     pub runner: Box<dyn Fn(App) + Send>, // Send bound is required to make App Send
     /// The schedule that systems are added to by default.
     ///

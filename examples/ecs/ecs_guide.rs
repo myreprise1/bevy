@@ -25,9 +25,10 @@
 //! We will now make a simple "game" to illustrate what Bevy's ECS looks like in practice.
 
 use bevy::{
-    app::{AppExit, ScheduleRunnerPlugin, ScheduleRunnerSettings},
+    app::AppExit,
     log::LogPlugin,
     prelude::*,
+    schedule_runner::{ScheduleRunnerPlugin, ScheduleRunnerSettings},
     utils::Duration,
 };
 use rand::random;

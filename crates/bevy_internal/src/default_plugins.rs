@@ -149,11 +149,11 @@ impl PluginGroup for DefaultPlugins {
 /// * [`TypeRegistrationPlugin`](crate::core::TypeRegistrationPlugin)
 /// * [`FrameCountPlugin`](crate::core::FrameCountPlugin)
 /// * [`TimePlugin`](crate::time::TimePlugin)
-/// * [`ScheduleRunnerPlugin`](crate::app::ScheduleRunnerPlugin)
+/// * [`ScheduleRunnerPlugin`](crate::schedule_runner::ScheduleRunnerPlugin)
 ///
 /// This group of plugins is intended for use for minimal, *headless* programs –
 /// see the [*Bevy* *headless* example](https://github.com/bevyengine/bevy/blob/main/examples/app/headless.rs)
-/// – and includes a [schedule runner (`ScheduleRunnerPlugin`)](crate::app::ScheduleRunnerPlugin)
+/// – and includes a [schedule runner (`ScheduleRunnerPlugin`)](crate::schedule_runner::ScheduleRunnerPlugin)
 /// to provide functionality that would otherwise be driven by a windowed application's
 /// *event loop* or *message loop*.
 ///
@@ -168,6 +168,6 @@ impl PluginGroup for MinimalPlugins {
             .add(bevy_core::TypeRegistrationPlugin::default())
             .add(bevy_core::FrameCountPlugin::default())
             .add(bevy_time::TimePlugin::default())
-            .add(bevy_app::ScheduleRunnerPlugin::default())
+            .add(bevy_schedule_runner::ScheduleRunnerPlugin::default())
     }
 }

@@ -1,9 +1,8 @@
-use crate::{
-    app::{App, AppExit},
-    plugin::Plugin,
+use bevy_app::{App, AppExit, Plugin};
+use bevy_ecs::{
+    event::{Events, ManualEventReader},
+    prelude::Resource,
 };
-use bevy_ecs::event::{Events, ManualEventReader};
-use bevy_ecs::prelude::Resource;
 use bevy_utils::{Duration, Instant};
 
 #[cfg(target_arch = "wasm32")]
