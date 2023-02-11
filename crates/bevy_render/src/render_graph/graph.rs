@@ -9,8 +9,6 @@ use bevy_ecs::{prelude::World, system::Resource};
 use bevy_utils::HashMap;
 use std::{borrow::Cow, fmt::Debug};
 
-use super::EdgeExistence;
-
 /// The render graph configures the modular, parallel and re-usable render logic.
 /// It is a retained and stateless (nodes themselves may have their own internal state) structure,
 /// which can not be modified while it is executed by the graph runner.
@@ -263,7 +261,7 @@ impl RenderGraph {
             input_index,
         };
 
-        self.validate_edge(&edge, EdgeExistence::DoesNotExist)?;
+        self.validate_edge(&edge, false)?;
 
         {
             let output_node = self.get_node_state_mut(output_node_id)?;
@@ -328,7 +326,7 @@ impl RenderGraph {
             input_index,
         };
 
-        self.validate_edge(&edge, EdgeExistence::Exists)?;
+        self.validate_edge(&edge, true)?;
 
         {
             let output_node = self.get_node_state_mut(output_node_id)?;
@@ -361,7 +359,7 @@ impl RenderGraph {
             input_node: input_node_id,
         };
 
-        self.validate_edge(&edge, EdgeExistence::DoesNotExist)?;
+        self.validate_edge(&edge, false)?;
 
         {
             let output_node = self.get_node_state_mut(output_node_id)?;
@@ -406,7 +404,7 @@ impl RenderGraph {
             input_node: input_node_id,
         };
 
-        self.validate_edge(&edge, EdgeExistence::Exists)?;
+        self.validate_edge(&edge, true)?;
 
         {
             let output_node = self.get_node_state_mut(output_node_id)?;
@@ -423,13 +421,13 @@ impl RenderGraph {
     pub fn validate_edge(
         &mut self,
         edge: &Edge,
-        should_exist: EdgeExistence,
+        should_exist: bool,
     ) -> Result<(), RenderGraphError> {
-        if should_exist == EdgeExistence::Exists && !self.has_edge(edge) {
-            return Err(RenderGraphError::EdgeDoesNotExist(edge.clone()));
-        } else if should_exist == EdgeExistence::DoesNotExist && self.has_edge(edge) {
-            return Err(RenderGraphError::EdgeAlreadyExists(edge.clone()));
-        }
+        match (should_exist, self.has_edge(edge)) {
+            (true, false) => return Err(RenderGraphError::EdgeDoesNotExist(edge.clone())),
+            (false, true) => return Err(RenderGraphError::EdgeAlreadyExists(edge.clone())),
+            _ => {}
+        };
 
         match *edge {
             Edge::SlotEdge {
@@ -465,7 +463,7 @@ impl RenderGraph {
                         false
                     }
                 }) {
-                    if should_exist == EdgeExistence::DoesNotExist {
+                    if should_exist == false {
                         return Err(RenderGraphError::NodeInputSlotAlreadyOccupied {
                             node: input_node,
                             input_slot: input_index,
