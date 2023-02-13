@@ -1,6 +1,6 @@
 use bevy_app::{App, Plugin};
 use bevy_asset::{load_internal_asset, Handle, HandleUntyped};
-use bevy_core_pipeline::prelude::Camera3d;
+use bevy_core_3d::prelude::Camera3d;
 use bevy_ecs::{prelude::Component, query::With};
 use bevy_reflect::{Reflect, TypeUuid};
 use bevy_render::{
