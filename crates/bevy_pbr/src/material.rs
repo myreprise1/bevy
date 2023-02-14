@@ -18,7 +18,7 @@ use bevy_render::{
     extract_component::ExtractComponentPlugin,
     mesh::{Mesh, MeshVertexBufferLayout},
     prelude::Image,
-    render_asset::{PrepareAssetLabel, RenderAssets},
+    render_asset::{PrepareAssetSet, RenderAssets},
     render_phase::{
         AddRenderCommand, DrawFunctions, PhaseItem, RenderCommand, RenderCommandResult,
         RenderPhase, SetItemPipeline, TrackedRenderPass,
@@ -197,7 +197,7 @@ where
                 .add_system(
                     prepare_materials::<M>
                         .in_set(RenderSet::Prepare)
-                        .after(PrepareAssetLabel::PreAssetPrepare),
+                        .after(PrepareAssetSet::PreAssetPrepare),
                 )
                 .add_system(queue_material_meshes::<M>.in_set(RenderSet::Queue));
         }
