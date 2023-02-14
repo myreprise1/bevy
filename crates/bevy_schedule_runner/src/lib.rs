@@ -91,24 +91,18 @@ impl Plugin for ScheduleRunnerPlugin {
                           -> Result<Option<Duration>, AppExit> {
                         let start_time = Instant::now();
 
-                        if let Some(app_exit_events) =
-                            app.world.get_resource_mut::<Events<AppExit>>()
+                        if let Some(result) =
+                            check_for_app_exit_events(app, &mut app_exit_event_reader)
                         {
-                            if let Some(exit) = app_exit_event_reader.iter(&app_exit_events).last()
-                            {
-                                return Err(exit.clone());
-                            }
+                            return result;
                         }
 
                         app.update();
 
-                        if let Some(app_exit_events) =
-                            app.world.get_resource_mut::<Events<AppExit>>()
+                        if let Some(value) =
+                            check_for_app_exit_events(app, &mut app_exit_event_reader)
                         {
-                            if let Some(exit) = app_exit_event_reader.iter(&app_exit_events).last()
-                            {
-                                return Err(exit.clone());
-                            }
+                            return value;
                         }
 
                         let end_time = Instant::now();
@@ -166,4 +160,18 @@ impl Plugin for ScheduleRunnerPlugin {
             }
         });
     }
+}
+
+fn check_for_app_exit_events(
+    app: &mut App,
+    app_exit_event_reader: &mut ManualEventReader<AppExit>,
+) -> Option<Result<Option<Duration>, AppExit>> {
+    if let Some(app_exit_events) = app.world.get_resource_mut::<Events<AppExit>>() {
+        return app_exit_event_reader
+            .iter(&app_exit_events)
+            .last()
+            .cloned()
+            .map(Err);
+    }
+    None
 }
