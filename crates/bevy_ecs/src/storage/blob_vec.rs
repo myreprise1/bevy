@@ -5,8 +5,8 @@ use std::{
     ptr::NonNull,
 };
 
+use bevy_ondrop::OnDrop;
 use bevy_ptr::{OwningPtr, Ptr, PtrMut};
-use bevy_utils::OnDrop;
 
 /// A flat, type-erased data storage type
 ///

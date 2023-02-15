@@ -1,0 +1,9 @@
+[package]
+name = "bevy_ondrop"
+version = "0.9.0"
+edition = "2021"
+description = "A type which calls a function when dropped."
+homepage = "https://bevyengine.org"
+repository = "https://github.com/bevyengine/bevy"
+license = "MIT OR Apache-2.0"
+keywords = ["bevy", "no_std"]
