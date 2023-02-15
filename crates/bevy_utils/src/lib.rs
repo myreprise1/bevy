@@ -18,11 +18,9 @@ pub mod synccell;
 pub mod syncunsafecell;
 
 mod default;
-mod float_ord;
 
 pub use ahash::AHasher;
 pub use default::default;
-pub use float_ord::*;
 pub use hashbrown;
 pub use instant::{Duration, Instant};
 pub use petgraph;

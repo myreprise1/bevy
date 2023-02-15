@@ -8,13 +8,13 @@ pub use plugin::PrepassPlugin;
 use std::cmp::Reverse;
 
 use bevy_ecs::prelude::*;
+use bevy_float_ord::FloatOrd;
 use bevy_reflect::Reflect;
 use bevy_render::{
     render_phase::{CachedRenderPipelinePhaseItem, DrawFunctionId, PhaseItem},
     render_resource::{CachedRenderPipelineId, Extent3d, TextureFormat},
     texture::CachedTexture,
 };
-use bevy_utils::FloatOrd;
 
 pub const DEPTH_PREPASS_FORMAT: TextureFormat = TextureFormat::Depth32Float;
 pub const NORMAL_PREPASS_FORMAT: TextureFormat = TextureFormat::Rgb10a2Unorm;

@@ -100,6 +100,7 @@ pub mod transform {
 
 pub mod utils {
     //! Various miscellaneous utilities for easing development
+    pub use bevy_float_ord::*;
     pub use bevy_utils::*;
 }
 

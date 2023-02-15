@@ -10,6 +10,7 @@ use bevy_ecs::{
         SystemParamItem,
     },
 };
+use bevy_float_ord::FloatOrd;
 use bevy_log::error;
 use bevy_reflect::TypeUuid;
 use bevy_render::{
@@ -33,7 +34,7 @@ use bevy_render::{
 };
 use bevy_tonemapping::Tonemapping;
 use bevy_transform::components::{GlobalTransform, Transform};
-use bevy_utils::{FloatOrd, HashMap, HashSet};
+use bevy_utils::{HashMap, HashSet};
 use std::hash::Hash;
 use std::marker::PhantomData;
 
