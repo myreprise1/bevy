@@ -6,8 +6,7 @@ pub use bevy_ecs_macros::{ScheduleLabel, SystemSet};
 use bevy_label::{define_boxed_label, DynHash};
 
 use crate::system::{
-    ExclusiveSystemParam, ExclusiveSystemParamFunction, IsExclusiveFunctionSystem,
-    IsFunctionSystem, SystemParam, SystemParamFunction,
+    ExclusiveSystemParamFunction, IsExclusiveFunctionSystem, IsFunctionSystem, SystemParamFunction,
 };
 
 define_boxed_label!(ScheduleLabel);
@@ -129,10 +128,9 @@ impl<S: SystemSet> IntoSystemSet<()> for S {
 }
 
 // systems
-impl<In, Out, Param, Marker, F> IntoSystemSet<(IsFunctionSystem, In, Out, Param, Marker)> for F
+impl<Marker, F> IntoSystemSet<(IsFunctionSystem, Marker)> for F
 where
-    Param: SystemParam,
-    F: SystemParamFunction<In, Out, Param, Marker>,
+    F: SystemParamFunction<Marker>,
 {
     type Set = SystemTypeSet<Self>;
 
@@ -143,11 +141,9 @@ where
 }
 
 // exclusive systems
-impl<In, Out, Param, Marker, F> IntoSystemSet<(IsExclusiveFunctionSystem, In, Out, Param, Marker)>
-    for F
+impl<Marker, F> IntoSystemSet<(IsExclusiveFunctionSystem, Marker)> for F
 where
-    Param: ExclusiveSystemParam,
-    F: ExclusiveSystemParamFunction<In, Out, Param, Marker>,
+    F: ExclusiveSystemParamFunction<Marker>,
 {
     type Set = SystemTypeSet<Self>;
 
