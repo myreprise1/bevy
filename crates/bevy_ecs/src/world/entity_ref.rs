@@ -903,6 +903,6 @@ mod tests {
         assert!(res.is_err());
 
         // Ensure that the location has been properly updated.
-        assert!(entity.location() != old_location);
+        assert_ne!(entity.location(), old_location);
     }
 }

@@ -817,8 +817,8 @@ mod tests {
         for tracker in query.iter(&world) {
             let ticks_since_insert = change_tick.wrapping_sub(tracker.component_ticks.added.tick);
             let ticks_since_change = change_tick.wrapping_sub(tracker.component_ticks.changed.tick);
-            assert!(ticks_since_insert == MAX_CHANGE_AGE);
-            assert!(ticks_since_change == MAX_CHANGE_AGE);
+            assert_eq!(ticks_since_insert, MAX_CHANGE_AGE);
+            assert_eq!(ticks_since_change, MAX_CHANGE_AGE);
         }
     }
 

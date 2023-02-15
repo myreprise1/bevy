@@ -103,7 +103,7 @@ impl BlobVec {
     // SAFETY: must not be called for a ZST item layout
     #[warn(unsafe_op_in_unsafe_fn)] // to allow unsafe blocks in unsafe fn
     unsafe fn grow_exact(&mut self, increment: NonZeroUsize) {
-        debug_assert!(self.item_layout.size() != 0);
+        debug_assert_ne!(self.item_layout.size(), 0);
 
         let new_capacity = self.capacity + increment.get();
         let new_layout =

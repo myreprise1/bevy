@@ -730,8 +730,9 @@ unsafe fn initialize_bundle(
     let mut deduped = component_ids.clone();
     deduped.sort();
     deduped.dedup();
-    assert!(
-        deduped.len() == component_ids.len(),
+    assert_eq!(
+        deduped.len(),
+        component_ids.len(),
         "Bundle {bundle_type_name} has duplicate components",
     );
 

@@ -216,7 +216,7 @@ impl Column {
         src_row: TableRow,
         dst_row: TableRow,
     ) {
-        debug_assert!(self.data.layout() == other.data.layout());
+        debug_assert_eq!(self.data.layout(), other.data.layout());
         let ptr = self.data.get_unchecked_mut(dst_row.index());
         other.data.swap_remove_unchecked(src_row.index(), ptr);
         *self.added_ticks.get_unchecked_mut(dst_row.index()) =
