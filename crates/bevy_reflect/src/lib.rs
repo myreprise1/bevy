@@ -14,6 +14,7 @@ mod type_info;
 mod type_registry;
 mod type_uuid;
 mod type_uuid_impl;
+mod value_info;
 mod impls {
     #[cfg(feature = "glam")]
     mod glam;
@@ -61,6 +62,7 @@ pub use tuple_struct::*;
 pub use type_info::*;
 pub use type_registry::*;
 pub use type_uuid::*;
+pub use value_info::*;
 
 pub use bevy_reflect_derive::*;
 pub use erased_serde;
