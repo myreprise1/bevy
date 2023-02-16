@@ -13,7 +13,7 @@ use std::fmt::Debug;
 
 #[cfg(feature = "trace")]
 use bevy_utils::tracing::info_span;
-bevy_utils::define_label!(
+bevy_label::define_label!(
     /// A strongly-typed class of labels used to identify an [`App`].
     AppLabel,
     /// A strongly-typed identifier for an [`AppLabel`].

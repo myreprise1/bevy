@@ -3,8 +3,7 @@ use std::hash::{Hash, Hasher};
 use std::marker::PhantomData;
 
 pub use bevy_ecs_macros::{ScheduleLabel, SystemSet};
-use bevy_utils::define_boxed_label;
-use bevy_utils::label::DynHash;
+use bevy_label::{define_boxed_label, DynHash};
 
 use crate::system::{
     ExclusiveSystemParam, ExclusiveSystemParamFunction, IsExclusiveFunctionSystem,
