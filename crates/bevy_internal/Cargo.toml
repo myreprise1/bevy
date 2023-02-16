@@ -140,6 +140,7 @@ bevy_primitives = { path = "../bevy_primitives", optional = true, version = "0.9
 bevy_render = { path = "../bevy_render", optional = true, version = "0.9.0" }
 bevy_dynamic_plugin = { path = "../bevy_dynamic_plugin", optional = true, version = "0.9.0" }
 bevy_scene = { path = "../bevy_scene", optional = true, version = "0.9.0" }
+bevy_shape = { path = "../bevy_shape", optional = true, version = "0.9.0" }
 bevy_sprite = { path = "../bevy_sprite", optional = true, version = "0.9.0" }
 bevy_text = { path = "../bevy_text", optional = true, version = "0.9.0" }
 bevy_tonemapping = { path = "../bevy_tonemapping", optional = true, version = "0.9.0" }
