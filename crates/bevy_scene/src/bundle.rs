@@ -6,6 +6,7 @@ use bevy_ecs::{
     entity::Entity,
     prelude::{Changed, Component, Without},
     system::{Commands, Query},
+    world::Mut,
 };
 use bevy_render::prelude::{ComputedVisibility, Visibility};
 use bevy_transform::components::{GlobalTransform, Transform};
@@ -60,20 +61,38 @@ pub fn scene_spawner(
 ) {
     for (entity, scene, instance) in &mut scene_to_spawn {
         let new_instance = scene_spawner.spawn_as_child(scene.clone(), entity);
-        if let Some(mut old_instance) = instance {
-            scene_spawner.despawn_instance(**old_instance);
-            *old_instance = SceneInstance(new_instance);
-        } else {
-            commands.entity(entity).insert(SceneInstance(new_instance));
-        }
+        insert_scene(
+            instance,
+            &mut scene_spawner,
+            new_instance,
+            &mut commands,
+            entity,
+        );
     }
     for (entity, dynamic_scene, instance) in &mut dynamic_scene_to_spawn {
         let new_instance = scene_spawner.spawn_dynamic_as_child(dynamic_scene.clone(), entity);
-        if let Some(mut old_instance) = instance {
-            scene_spawner.despawn_instance(**old_instance);
-            *old_instance = SceneInstance(new_instance);
-        } else {
-            commands.entity(entity).insert(SceneInstance(new_instance));
-        }
+        insert_scene(
+            instance,
+            &mut scene_spawner,
+            new_instance,
+            &mut commands,
+            entity,
+        );
+    }
+}
+
+#[inline]
+fn insert_scene(
+    instance: Option<Mut<SceneInstance>>,
+    scene_spawner: &mut ResMut<SceneSpawner>,
+    new_instance: InstanceId,
+    commands: &mut Commands,
+    entity: Entity,
+) {
+    if let Some(mut old_instance) = instance {
+        scene_spawner.despawn_instance(**old_instance);
+        *old_instance = SceneInstance(new_instance);
+    } else {
+        commands.entity(entity).insert(SceneInstance(new_instance));
     }
 }
