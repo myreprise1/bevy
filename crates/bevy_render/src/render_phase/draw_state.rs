@@ -1,5 +1,4 @@
 use crate::{
-    camera::Viewport,
     prelude::Color,
     render_resource::{
         BindGroup, BindGroupId, Buffer, BufferId, BufferSlice, RenderPipeline, RenderPipelineId,
@@ -8,6 +7,7 @@ use crate::{
     renderer::RenderDevice,
 };
 use bevy_utils::{default, detailed_trace};
+use bevy_viewport::Viewport;
 use std::ops::Range;
 use wgpu::{IndexFormat, RenderPass};
 use wgpu_hal::{MAX_BIND_GROUPS, MAX_VERTEX_BUFFERS};

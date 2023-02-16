@@ -3,6 +3,9 @@ mod camera;
 mod camera_driver_node;
 mod projection;
 
+use bevy_viewport::plugin::ViewportPlugin;
+
+pub use bevy_viewport::*;
 pub use camera::*;
 pub use camera_driver_node::*;
 pub use projection::*;
@@ -15,9 +18,8 @@ pub struct CameraPlugin;
 
 impl Plugin for CameraPlugin {
     fn build(&self, app: &mut App) {
-        app.register_type::<Camera>()
-            .register_type::<Viewport>()
-            .register_type::<Option<Viewport>>()
+        app.add_plugin(ViewportPlugin)
+            .register_type::<Camera>()
             .register_type::<ScalingMode>()
             .register_type::<CameraRenderGraph>()
             .register_type::<RenderTarget>()
