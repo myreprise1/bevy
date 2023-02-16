@@ -19,6 +19,7 @@ pub mod syncunsafecell;
 mod default;
 
 pub use ahash::AHasher;
+pub use bevy_utils_proc_macros::*;
 pub use default::default;
 pub use hashbrown;
 pub use instant::{Duration, Instant};
