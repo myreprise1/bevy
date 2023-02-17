@@ -247,7 +247,7 @@ impl SpecializedRenderPipeline for SpritePipeline {
                     write_mask: ColorWrites::ALL,
                 })],
             }),
-            layout: Some(vec![self.view_layout.clone(), self.material_layout.clone()]),
+            layout: vec![self.view_layout.clone(), self.material_layout.clone()],
             primitive: PrimitiveState {
                 front_face: FrontFace::Ccw,
                 cull_mode: None,
@@ -264,6 +264,7 @@ impl SpecializedRenderPipeline for SpritePipeline {
                 alpha_to_coverage_enabled: false,
             },
             label: Some("sprite_pipeline".into()),
+            push_constant_ranges: Vec::new(),
         }
     }
 }
