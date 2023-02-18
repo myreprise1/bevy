@@ -36,16 +36,7 @@ use bevy_utils::HashMap;
 use bytemuck::{Pod, Zeroable};
 use std::ops::Range;
 
-pub mod node {
-    pub const UI_PASS_DRIVER: &str = "ui_pass_driver";
-}
-
-pub mod draw_ui_graph {
-    pub const NAME: &str = "draw_ui";
-    pub mod node {
-        pub const UI_PASS: &str = "ui_pass";
-    }
-}
+pub const DRAW_UI_GRAPH_NAME: &str = "draw_ui";
 
 pub const UI_SHADER_HANDLE: HandleUntyped =
     HandleUntyped::weak_from_u64(Shader::TYPE_UUID, 13012847047162779583);
@@ -89,42 +80,42 @@ pub fn build_ui_render(app: &mut App) {
     let ui_graph_3d = get_ui_graph(render_app);
     let mut graph = render_app.world.resource_mut::<RenderGraph>();
 
-    if let Some(graph_2d) = graph.get_sub_graph_mut(bevy_core_2d::graph::NAME) {
-        graph_2d.add_sub_graph(draw_ui_graph::NAME, ui_graph_2d);
+    if let Some(graph_2d) = graph.get_sub_graph_mut(bevy_core_2d::GRAPH_NAME) {
+        graph_2d.add_sub_graph(DRAW_UI_GRAPH_NAME, ui_graph_2d);
         graph_2d.add_node(
-            draw_ui_graph::node::UI_PASS,
-            RunGraphOnViewNode::new(draw_ui_graph::NAME),
+            UiPassNode::NAME,
+            RunGraphOnViewNode::new(DRAW_UI_GRAPH_NAME),
         );
-        graph_2d.add_node_edge(MainPass2dNode::NAME, draw_ui_graph::node::UI_PASS);
+        graph_2d.add_node_edge(MainPass2dNode::NAME, UiPassNode::NAME);
         graph_2d.add_slot_edge(
             graph_2d.input_node().id,
             RenderGraph::VIEW_ENTITY,
-            draw_ui_graph::node::UI_PASS,
+            UiPassNode::NAME,
             RunGraphOnViewNode::IN_VIEW,
         );
         graph_2d.add_node_edge(
-            bevy_core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
-            draw_ui_graph::node::UI_PASS,
+            MainPass2dNode::END_MAIN_PASS_POST_PROCESSING,
+            UiPassNode::NAME,
         );
-        graph_2d.add_node_edge(draw_ui_graph::node::UI_PASS, UpscalingNode::NAME);
+        graph_2d.add_node_edge(UiPassNode::NAME, UpscalingNode::NAME);
     }
 
-    if let Some(graph_3d) = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME) {
-        graph_3d.add_sub_graph(draw_ui_graph::NAME, ui_graph_3d);
+    if let Some(graph_3d) = graph.get_sub_graph_mut(bevy_core_3d::GRAPH_NAME) {
+        graph_3d.add_sub_graph(DRAW_UI_GRAPH_NAME, ui_graph_3d);
         graph_3d.add_node(
-            draw_ui_graph::node::UI_PASS,
-            RunGraphOnViewNode::new(draw_ui_graph::NAME),
+            UiPassNode::NAME,
+            RunGraphOnViewNode::new(DRAW_UI_GRAPH_NAME),
         );
-        graph_3d.add_node_edge(MainPass3dNode::NAME, draw_ui_graph::node::UI_PASS);
+        graph_3d.add_node_edge(MainPass3dNode::NAME, UiPassNode::NAME);
         graph_3d.add_node_edge(
-            bevy_core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
-            draw_ui_graph::node::UI_PASS,
+            MainPass3dNode::END_MAIN_PASS_POST_PROCESSING,
+            UiPassNode::NAME,
         );
-        graph_3d.add_node_edge(draw_ui_graph::node::UI_PASS, UpscalingNode::NAME);
+        graph_3d.add_node_edge(UiPassNode::NAME, UpscalingNode::NAME);
         graph_3d.add_slot_edge(
             graph_3d.input_node().id,
             RenderGraph::VIEW_ENTITY,
-            draw_ui_graph::node::UI_PASS,
+            UiPassNode::NAME,
             RunGraphOnViewNode::IN_VIEW,
         );
     }
@@ -133,7 +124,7 @@ pub fn build_ui_render(app: &mut App) {
 fn get_ui_graph(render_app: &mut App) -> RenderGraph {
     let ui_pass_node = UiPassNode::new(&mut render_app.world);
     let mut ui_graph = RenderGraph::default();
-    ui_graph.add_node(draw_ui_graph::node::UI_PASS, ui_pass_node);
+    ui_graph.add_node(UiPassNode::NAME, ui_pass_node);
     let input_node_id = ui_graph.set_input(vec![SlotInfo::new(
         RenderGraph::VIEW_ENTITY,
         SlotType::Entity,
@@ -141,7 +132,7 @@ fn get_ui_graph(render_app: &mut App) -> RenderGraph {
     ui_graph.add_slot_edge(
         input_node_id,
         RenderGraph::VIEW_ENTITY,
-        draw_ui_graph::node::UI_PASS,
+        UiPassNode::NAME,
         UiPassNode::IN_VIEW,
     );
     ui_graph

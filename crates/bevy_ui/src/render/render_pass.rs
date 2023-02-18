@@ -26,6 +26,7 @@ pub struct UiPassNode {
 }
 
 impl UiPassNode {
+    pub const NAME: &'static str = "ui_pass";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {
