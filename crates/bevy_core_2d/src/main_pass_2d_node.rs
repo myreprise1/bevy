@@ -25,6 +25,7 @@ pub struct MainPass2dNode {
 }
 
 impl MainPass2dNode {
+    pub const NAME: &'static str = "main_pass";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

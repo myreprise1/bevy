@@ -21,6 +21,7 @@ pub struct UpscalingNode {
 }
 
 impl UpscalingNode {
+    pub const NAME: &'static str = "upscaling";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

@@ -19,6 +19,7 @@ pub struct TonemappingNode {
 }
 
 impl TonemappingNode {
+    pub const NAME: &'static str = "tonemapping";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

@@ -11,12 +11,6 @@ pub mod graph {
         pub const VIEW_ENTITY: &str = "view_entity";
     }
     pub mod node {
-        pub const PREPASS: &str = "prepass";
-        pub const MAIN_PASS: &str = "main_pass";
-        pub const BLOOM: &str = "bloom";
-        pub const TONEMAPPING: &str = "tonemapping";
-        pub const FXAA: &str = "fxaa";
-        pub const UPSCALING: &str = "upscaling";
         pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
     }
 }
@@ -82,11 +76,11 @@ impl Plugin for Core3dPlugin {
         let mut graph = render_app.world.resource_mut::<RenderGraph>();
 
         let mut draw_3d_graph = RenderGraph::default();
-        draw_3d_graph.add_node(graph::node::PREPASS, prepass_node);
-        draw_3d_graph.add_node(graph::node::MAIN_PASS, pass_node_3d);
-        draw_3d_graph.add_node(graph::node::TONEMAPPING, tonemapping);
+        draw_3d_graph.add_node(PrepassNode::NAME, prepass_node);
+        draw_3d_graph.add_node(MainPass3dNode::NAME, pass_node_3d);
+        draw_3d_graph.add_node(TonemappingNode::NAME, tonemapping);
         draw_3d_graph.add_node(graph::node::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
-        draw_3d_graph.add_node(graph::node::UPSCALING, upscaling);
+        draw_3d_graph.add_node(UpscalingNode::NAME, upscaling);
 
         let input_node_id = draw_3d_graph.set_input(vec![SlotInfo::new(
             graph::input::VIEW_ENTITY,
@@ -95,36 +89,36 @@ impl Plugin for Core3dPlugin {
         draw_3d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::PREPASS,
+            PrepassNode::NAME,
             PrepassNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::MAIN_PASS,
+            MainPass3dNode::NAME,
             MainPass3dNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::TONEMAPPING,
+            TonemappingNode::NAME,
             TonemappingNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::UPSCALING,
+            UpscalingNode::NAME,
             UpscalingNode::IN_VIEW,
         );
-        draw_3d_graph.add_node_edge(graph::node::PREPASS, graph::node::MAIN_PASS);
-        draw_3d_graph.add_node_edge(graph::node::MAIN_PASS, graph::node::TONEMAPPING);
+        draw_3d_graph.add_node_edge(PrepassNode::NAME, MainPass3dNode::NAME);
+        draw_3d_graph.add_node_edge(MainPass3dNode::NAME, TonemappingNode::NAME);
         draw_3d_graph.add_node_edge(
-            graph::node::TONEMAPPING,
+            TonemappingNode::NAME,
             graph::node::END_MAIN_PASS_POST_PROCESSING,
         );
         draw_3d_graph.add_node_edge(
             graph::node::END_MAIN_PASS_POST_PROCESSING,
-            graph::node::UPSCALING,
+            UpscalingNode::NAME,
         );
         graph.add_sub_graph(graph::NAME, draw_3d_graph);
     }

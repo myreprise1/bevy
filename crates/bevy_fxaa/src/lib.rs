@@ -2,10 +2,10 @@ use bevy_app::prelude::*;
 use bevy_asset::{load_internal_asset, HandleUntyped};
 use bevy_derive::Deref;
 use bevy_ecs::prelude::*;
+use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_reflect::{
     std_traits::ReflectDefault, FromReflect, Reflect, ReflectFromReflect, TypeUuid,
 };
-use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
 use bevy_render::{
     extract_component::{ExtractComponent, ExtractComponentPlugin},
     prelude::Camera,
@@ -16,6 +16,7 @@ use bevy_render::{
     view::{ExtractedView, ViewTarget},
     RenderApp, RenderSet,
 };
+use bevy_tonemapping::TonemappingNode;
 
 mod node;
 
@@ -101,21 +102,18 @@ impl Plugin for FxaaPlugin {
                 .get_sub_graph_mut(bevy_core_3d::graph::NAME)
                 .unwrap();
 
-            graph.add_node(bevy_core_3d::graph::node::FXAA, fxaa_node);
+            graph.add_node(FxaaNode::NAME, fxaa_node);
 
             graph.add_slot_edge(
                 graph.input_node().id,
                 bevy_core_3d::graph::input::VIEW_ENTITY,
-                bevy_core_3d::graph::node::FXAA,
+                FxaaNode::NAME,
                 FxaaNode::IN_VIEW,
             );
 
+            graph.add_node_edge(TonemappingNode::NAME, FxaaNode::NAME);
             graph.add_node_edge(
-                bevy_core_3d::graph::node::TONEMAPPING,
-                bevy_core_3d::graph::node::FXAA,
-            );
-            graph.add_node_edge(
-                bevy_core_3d::graph::node::FXAA,
+                FxaaNode::NAME,
                 bevy_core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             );
         }
@@ -126,21 +124,18 @@ impl Plugin for FxaaPlugin {
                 .get_sub_graph_mut(bevy_core_2d::graph::NAME)
                 .unwrap();
 
-            graph.add_node(bevy_core_2d::graph::node::FXAA, fxaa_node);
+            graph.add_node(FxaaNode::NAME, fxaa_node);
 
             graph.add_slot_edge(
                 graph.input_node().id,
                 bevy_core_2d::graph::input::VIEW_ENTITY,
-                bevy_core_2d::graph::node::FXAA,
+                FxaaNode::NAME,
                 FxaaNode::IN_VIEW,
             );
 
+            graph.add_node_edge(TonemappingNode::NAME, FxaaNode::NAME);
             graph.add_node_edge(
-                bevy_core_2d::graph::node::TONEMAPPING,
-                bevy_core_2d::graph::node::FXAA,
-            );
-            graph.add_node_edge(
-                bevy_core_2d::graph::node::FXAA,
+                FxaaNode::NAME,
                 bevy_core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
             );
         }

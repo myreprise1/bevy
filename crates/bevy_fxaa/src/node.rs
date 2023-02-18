@@ -28,6 +28,7 @@ pub struct FxaaNode {
 }
 
 impl FxaaNode {
+    pub const NAME: &'static str = "fxaa";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

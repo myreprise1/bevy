@@ -1,5 +1,7 @@
 use bevy_app::{App, Plugin};
 use bevy_asset::{load_internal_asset, HandleUntyped};
+use bevy_core_2d::MainPass2dNode;
+use bevy_core_3d::MainPass3dNode;
 use bevy_ecs::{
     prelude::*,
     query::{QueryItem, QueryState},
@@ -21,6 +23,7 @@ use bevy_render::{
     view::ViewTarget,
     RenderApp, RenderSet,
 };
+use bevy_tonemapping::TonemappingNode;
 #[cfg(feature = "trace")]
 use bevy_utils::tracing::info_span;
 use bevy_utils::HashMap;
@@ -54,44 +57,32 @@ impl Plugin for BloomPlugin {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
             let draw_3d_graph = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME).unwrap();
-            draw_3d_graph.add_node(bevy_core_3d::graph::node::BLOOM, bloom_node);
+            draw_3d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_3d_graph.add_slot_edge(
                 draw_3d_graph.input_node().id,
                 bevy_core_3d::graph::input::VIEW_ENTITY,
-                bevy_core_3d::graph::node::BLOOM,
+                BloomNode::NAME,
                 BloomNode::IN_VIEW,
             );
             // MAIN_PASS -> BLOOM -> TONEMAPPING
-            draw_3d_graph.add_node_edge(
-                bevy_core_3d::graph::node::MAIN_PASS,
-                bevy_core_3d::graph::node::BLOOM,
-            );
-            draw_3d_graph.add_node_edge(
-                bevy_core_3d::graph::node::BLOOM,
-                bevy_core_3d::graph::node::TONEMAPPING,
-            );
+            draw_3d_graph.add_node_edge(MainPass3dNode::NAME, BloomNode::NAME);
+            draw_3d_graph.add_node_edge(BloomNode::NAME, TonemappingNode::NAME);
         }
 
         {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
             let draw_2d_graph = graph.get_sub_graph_mut(bevy_core_2d::graph::NAME).unwrap();
-            draw_2d_graph.add_node(bevy_core_2d::graph::node::BLOOM, bloom_node);
+            draw_2d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_2d_graph.add_slot_edge(
                 draw_2d_graph.input_node().id,
                 bevy_core_2d::graph::input::VIEW_ENTITY,
-                bevy_core_2d::graph::node::BLOOM,
+                BloomNode::NAME,
                 BloomNode::IN_VIEW,
             );
             // MAIN_PASS -> BLOOM -> TONEMAPPING
-            draw_2d_graph.add_node_edge(
-                bevy_core_2d::graph::node::MAIN_PASS,
-                bevy_core_2d::graph::node::BLOOM,
-            );
-            draw_2d_graph.add_node_edge(
-                bevy_core_2d::graph::node::BLOOM,
-                bevy_core_2d::graph::node::TONEMAPPING,
-            );
+            draw_2d_graph.add_node_edge(MainPass2dNode::NAME, BloomNode::NAME);
+            draw_2d_graph.add_node_edge(BloomNode::NAME, TonemappingNode::NAME);
         }
     }
 }
@@ -182,6 +173,7 @@ pub struct BloomNode {
 }
 
 impl BloomNode {
+    pub const NAME: &'static str = "bloom";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

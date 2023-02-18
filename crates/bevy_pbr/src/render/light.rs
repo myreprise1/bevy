@@ -1818,6 +1818,8 @@ pub struct ShadowPassNode {
 }
 
 impl ShadowPassNode {
+    /// Label for the shadow pass node.
+    pub const NAME: &'static str = "shadow_pass";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

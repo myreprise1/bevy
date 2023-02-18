@@ -33,6 +33,7 @@ pub struct MainPass3dNode {
 }
 
 impl MainPass3dNode {
+    pub const NAME: &'static str = "main_pass";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

@@ -11,11 +11,6 @@ pub mod graph {
         pub const VIEW_ENTITY: &str = "view_entity";
     }
     pub mod node {
-        pub const MAIN_PASS: &str = "main_pass";
-        pub const BLOOM: &str = "bloom";
-        pub const TONEMAPPING: &str = "tonemapping";
-        pub const FXAA: &str = "fxaa";
-        pub const UPSCALING: &str = "upscaling";
         pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
     }
 }
@@ -70,10 +65,10 @@ impl Plugin for Core2dPlugin {
         let mut graph = render_app.world.resource_mut::<RenderGraph>();
 
         let mut draw_2d_graph = RenderGraph::default();
-        draw_2d_graph.add_node(graph::node::MAIN_PASS, pass_node_2d);
-        draw_2d_graph.add_node(graph::node::TONEMAPPING, tonemapping);
+        draw_2d_graph.add_node(MainPass2dNode::NAME, pass_node_2d);
+        draw_2d_graph.add_node(TonemappingNode::NAME, tonemapping);
         draw_2d_graph.add_node(graph::node::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
-        draw_2d_graph.add_node(graph::node::UPSCALING, upscaling);
+        draw_2d_graph.add_node(UpscalingNode::NAME, upscaling);
         let input_node_id = draw_2d_graph.set_input(vec![SlotInfo::new(
             graph::input::VIEW_ENTITY,
             SlotType::Entity,
@@ -81,29 +76,29 @@ impl Plugin for Core2dPlugin {
         draw_2d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::MAIN_PASS,
+            MainPass2dNode::NAME,
             MainPass2dNode::IN_VIEW,
         );
         draw_2d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::TONEMAPPING,
+            TonemappingNode::NAME,
             TonemappingNode::IN_VIEW,
         );
         draw_2d_graph.add_slot_edge(
             input_node_id,
             graph::input::VIEW_ENTITY,
-            graph::node::UPSCALING,
+            UpscalingNode::NAME,
             UpscalingNode::IN_VIEW,
         );
-        draw_2d_graph.add_node_edge(graph::node::MAIN_PASS, graph::node::TONEMAPPING);
+        draw_2d_graph.add_node_edge(MainPass2dNode::NAME, TonemappingNode::NAME);
         draw_2d_graph.add_node_edge(
-            graph::node::TONEMAPPING,
+            TonemappingNode::NAME,
             graph::node::END_MAIN_PASS_POST_PROCESSING,
         );
         draw_2d_graph.add_node_edge(
             graph::node::END_MAIN_PASS_POST_PROCESSING,
-            graph::node::UPSCALING,
+            UpscalingNode::NAME,
         );
         graph.add_sub_graph(graph::NAME, draw_2d_graph);
     }

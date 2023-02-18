@@ -34,6 +34,7 @@ pub struct PrepassNode {
 }
 
 impl PrepassNode {
+    pub const NAME: &'static str = "prepass";
     pub const IN_VIEW: &'static str = "view";
 
     pub fn new(world: &mut World) -> Self {

@@ -26,4 +26,5 @@ bevy_fullscreen_vertex_shader = { path = "../bevy_fullscreen_vertex_shader", ver
 bevy_reflect = { path = "../bevy_reflect", version = "0.9.0" }
 bevy_render = { path = "../bevy_render", version = "0.9.0" }
 bevy_math = { path = "../bevy_math", version = "0.9.0" }
+bevy_tonemapping = { path = "../bevy_tonemapping", version = "0.9.0" }
 bevy_utils = { path = "../bevy_utils", version = "0.9.0" }

@@ -11,6 +11,7 @@ mod prepass;
 mod render;
 
 pub use alpha::*;
+use bevy_core_3d::MainPass3dNode;
 pub use bundle::*;
 pub use environment_map::EnvironmentMapLight;
 pub use fog::*;
@@ -34,13 +35,6 @@ pub mod prelude {
         material::{Material, MaterialPlugin},
         pbr_material::StandardMaterial,
     };
-}
-
-pub mod draw_3d_graph {
-    pub mod node {
-        /// Label for the shadow pass node.
-        pub const SHADOW_PASS: &str = "shadow_pass";
-    }
 }
 
 use bevy_app::prelude::*;
@@ -306,15 +300,12 @@ impl Plugin for PbrPlugin {
         render_app.add_render_command::<Shadow, DrawShadowMesh>();
         let mut graph = render_app.world.resource_mut::<RenderGraph>();
         let draw_3d_graph = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME).unwrap();
-        draw_3d_graph.add_node(draw_3d_graph::node::SHADOW_PASS, shadow_pass_node);
-        draw_3d_graph.add_node_edge(
-            draw_3d_graph::node::SHADOW_PASS,
-            bevy_core_3d::graph::node::MAIN_PASS,
-        );
+        draw_3d_graph.add_node(ShadowPassNode::NAME, shadow_pass_node);
+        draw_3d_graph.add_node_edge(ShadowPassNode::NAME, MainPass3dNode::NAME);
         draw_3d_graph.add_slot_edge(
             draw_3d_graph.input_node().id,
             bevy_core_3d::graph::input::VIEW_ENTITY,
-            draw_3d_graph::node::SHADOW_PASS,
+            ShadowPassNode::NAME,
             ShadowPassNode::IN_VIEW,
         );
     }
