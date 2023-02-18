@@ -60,7 +60,7 @@ impl Plugin for BloomPlugin {
             draw_3d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_3d_graph.add_slot_edge(
                 draw_3d_graph.input_node().id,
-                bevy_core_3d::graph::input::VIEW_ENTITY,
+                RenderGraph::VIEW_ENTITY,
                 BloomNode::NAME,
                 BloomNode::IN_VIEW,
             );
@@ -76,7 +76,7 @@ impl Plugin for BloomPlugin {
             draw_2d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_2d_graph.add_slot_edge(
                 draw_2d_graph.input_node().id,
-                bevy_core_2d::graph::input::VIEW_ENTITY,
+                RenderGraph::VIEW_ENTITY,
                 BloomNode::NAME,
                 BloomNode::IN_VIEW,
             );

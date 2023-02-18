@@ -7,9 +7,6 @@ mod main_pass_3d_node;
 
 pub mod graph {
     pub const NAME: &str = "core_3d";
-    pub mod input {
-        pub const VIEW_ENTITY: &str = "view_entity";
-    }
     pub mod node {
         pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
     }
@@ -83,30 +80,30 @@ impl Plugin for Core3dPlugin {
         draw_3d_graph.add_node(UpscalingNode::NAME, upscaling);
 
         let input_node_id = draw_3d_graph.set_input(vec![SlotInfo::new(
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             SlotType::Entity,
         )]);
         draw_3d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             PrepassNode::NAME,
             PrepassNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             MainPass3dNode::NAME,
             MainPass3dNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             TonemappingNode::NAME,
             TonemappingNode::IN_VIEW,
         );
         draw_3d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             UpscalingNode::NAME,
             UpscalingNode::IN_VIEW,
         );

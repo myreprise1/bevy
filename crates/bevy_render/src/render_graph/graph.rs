@@ -60,6 +60,8 @@ impl RenderGraph {
     /// The name of the [`GraphInputNode`] of this graph. Used to connect other nodes to it.
     pub const INPUT_NODE_NAME: &'static str = "GraphInputNode";
 
+    pub const VIEW_ENTITY: &'static str = "view_entity";
+
     /// Updates all nodes and sub graphs of the render graph. Should be called before executing it.
     pub fn update(&mut self, world: &mut World) {
         for node in self.nodes.values_mut() {

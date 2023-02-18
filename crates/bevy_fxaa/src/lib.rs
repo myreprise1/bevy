@@ -106,7 +106,7 @@ impl Plugin for FxaaPlugin {
 
             graph.add_slot_edge(
                 graph.input_node().id,
-                bevy_core_3d::graph::input::VIEW_ENTITY,
+                RenderGraph::VIEW_ENTITY,
                 FxaaNode::NAME,
                 FxaaNode::IN_VIEW,
             );
@@ -128,7 +128,7 @@ impl Plugin for FxaaPlugin {
 
             graph.add_slot_edge(
                 graph.input_node().id,
-                bevy_core_2d::graph::input::VIEW_ENTITY,
+                RenderGraph::VIEW_ENTITY,
                 FxaaNode::NAME,
                 FxaaNode::IN_VIEW,
             );

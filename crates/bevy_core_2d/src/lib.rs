@@ -7,9 +7,6 @@ mod main_pass_2d_node;
 
 pub mod graph {
     pub const NAME: &str = "core_2d";
-    pub mod input {
-        pub const VIEW_ENTITY: &str = "view_entity";
-    }
     pub mod node {
         pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
     }
@@ -70,24 +67,24 @@ impl Plugin for Core2dPlugin {
         draw_2d_graph.add_node(graph::node::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
         draw_2d_graph.add_node(UpscalingNode::NAME, upscaling);
         let input_node_id = draw_2d_graph.set_input(vec![SlotInfo::new(
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             SlotType::Entity,
         )]);
         draw_2d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             MainPass2dNode::NAME,
             MainPass2dNode::IN_VIEW,
         );
         draw_2d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             TonemappingNode::NAME,
             TonemappingNode::IN_VIEW,
         );
         draw_2d_graph.add_slot_edge(
             input_node_id,
-            graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             UpscalingNode::NAME,
             UpscalingNode::IN_VIEW,
         );

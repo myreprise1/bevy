@@ -304,7 +304,7 @@ impl Plugin for PbrPlugin {
         draw_3d_graph.add_node_edge(ShadowPassNode::NAME, MainPass3dNode::NAME);
         draw_3d_graph.add_slot_edge(
             draw_3d_graph.input_node().id,
-            bevy_core_3d::graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             ShadowPassNode::NAME,
             ShadowPassNode::IN_VIEW,
         );

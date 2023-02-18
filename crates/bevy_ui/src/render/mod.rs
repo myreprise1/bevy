@@ -42,9 +42,6 @@ pub mod node {
 
 pub mod draw_ui_graph {
     pub const NAME: &str = "draw_ui";
-    pub mod input {
-        pub const VIEW_ENTITY: &str = "view_entity";
-    }
     pub mod node {
         pub const UI_PASS: &str = "ui_pass";
     }
@@ -101,7 +98,7 @@ pub fn build_ui_render(app: &mut App) {
         graph_2d.add_node_edge(MainPass2dNode::NAME, draw_ui_graph::node::UI_PASS);
         graph_2d.add_slot_edge(
             graph_2d.input_node().id,
-            bevy_core_2d::graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::IN_VIEW,
         );
@@ -126,7 +123,7 @@ pub fn build_ui_render(app: &mut App) {
         graph_3d.add_node_edge(draw_ui_graph::node::UI_PASS, UpscalingNode::NAME);
         graph_3d.add_slot_edge(
             graph_3d.input_node().id,
-            bevy_core_3d::graph::input::VIEW_ENTITY,
+            RenderGraph::VIEW_ENTITY,
             draw_ui_graph::node::UI_PASS,
             RunGraphOnViewNode::IN_VIEW,
         );
@@ -138,12 +135,12 @@ fn get_ui_graph(render_app: &mut App) -> RenderGraph {
     let mut ui_graph = RenderGraph::default();
     ui_graph.add_node(draw_ui_graph::node::UI_PASS, ui_pass_node);
     let input_node_id = ui_graph.set_input(vec![SlotInfo::new(
-        draw_ui_graph::input::VIEW_ENTITY,
+        RenderGraph::VIEW_ENTITY,
         SlotType::Entity,
     )]);
     ui_graph.add_slot_edge(
         input_node_id,
-        draw_ui_graph::input::VIEW_ENTITY,
+        RenderGraph::VIEW_ENTITY,
         draw_ui_graph::node::UI_PASS,
         UiPassNode::IN_VIEW,
     );
