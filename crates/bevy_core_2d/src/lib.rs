@@ -7,9 +7,6 @@ mod main_pass_2d_node;
 
 pub mod graph {
     pub const NAME: &str = "core_2d";
-    pub mod node {
-        pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
-    }
 }
 
 pub use camera_2d::*;
@@ -64,7 +61,7 @@ impl Plugin for Core2dPlugin {
         let mut draw_2d_graph = RenderGraph::default();
         draw_2d_graph.add_node(MainPass2dNode::NAME, pass_node_2d);
         draw_2d_graph.add_node(TonemappingNode::NAME, tonemapping);
-        draw_2d_graph.add_node(graph::node::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
+        draw_2d_graph.add_node(MainPass2dNode::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
         draw_2d_graph.add_node(UpscalingNode::NAME, upscaling);
         let input_node_id = draw_2d_graph.set_input(vec![SlotInfo::new(
             RenderGraph::VIEW_ENTITY,
@@ -91,10 +88,10 @@ impl Plugin for Core2dPlugin {
         draw_2d_graph.add_node_edge(MainPass2dNode::NAME, TonemappingNode::NAME);
         draw_2d_graph.add_node_edge(
             TonemappingNode::NAME,
-            graph::node::END_MAIN_PASS_POST_PROCESSING,
+            MainPass2dNode::END_MAIN_PASS_POST_PROCESSING,
         );
         draw_2d_graph.add_node_edge(
-            graph::node::END_MAIN_PASS_POST_PROCESSING,
+            MainPass2dNode::END_MAIN_PASS_POST_PROCESSING,
             UpscalingNode::NAME,
         );
         graph.add_sub_graph(graph::NAME, draw_2d_graph);

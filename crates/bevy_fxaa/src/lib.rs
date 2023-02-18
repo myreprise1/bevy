@@ -114,7 +114,7 @@ impl Plugin for FxaaPlugin {
             graph.add_node_edge(TonemappingNode::NAME, FxaaNode::NAME);
             graph.add_node_edge(
                 FxaaNode::NAME,
-                bevy_core_3d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+                MainPass3dNode::END_MAIN_PASS_POST_PROCESSING,
             );
         }
         {
@@ -136,7 +136,7 @@ impl Plugin for FxaaPlugin {
             graph.add_node_edge(TonemappingNode::NAME, FxaaNode::NAME);
             graph.add_node_edge(
                 FxaaNode::NAME,
-                bevy_core_2d::graph::node::END_MAIN_PASS_POST_PROCESSING,
+                MainPass2dNode::END_MAIN_PASS_POST_PROCESSING,
             );
         }
     }

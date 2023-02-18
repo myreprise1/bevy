@@ -7,9 +7,6 @@ mod main_pass_3d_node;
 
 pub mod graph {
     pub const NAME: &str = "core_3d";
-    pub mod node {
-        pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
-    }
 }
 
 use std::cmp::Reverse;
@@ -76,7 +73,7 @@ impl Plugin for Core3dPlugin {
         draw_3d_graph.add_node(PrepassNode::NAME, prepass_node);
         draw_3d_graph.add_node(MainPass3dNode::NAME, pass_node_3d);
         draw_3d_graph.add_node(TonemappingNode::NAME, tonemapping);
-        draw_3d_graph.add_node(graph::node::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
+        draw_3d_graph.add_node(MainPass3dNode::END_MAIN_PASS_POST_PROCESSING, EmptyNode);
         draw_3d_graph.add_node(UpscalingNode::NAME, upscaling);
 
         let input_node_id = draw_3d_graph.set_input(vec![SlotInfo::new(
@@ -111,10 +108,10 @@ impl Plugin for Core3dPlugin {
         draw_3d_graph.add_node_edge(MainPass3dNode::NAME, TonemappingNode::NAME);
         draw_3d_graph.add_node_edge(
             TonemappingNode::NAME,
-            graph::node::END_MAIN_PASS_POST_PROCESSING,
+            MainPass3dNode::END_MAIN_PASS_POST_PROCESSING,
         );
         draw_3d_graph.add_node_edge(
-            graph::node::END_MAIN_PASS_POST_PROCESSING,
+            MainPass3dNode::END_MAIN_PASS_POST_PROCESSING,
             UpscalingNode::NAME,
         );
         graph.add_sub_graph(graph::NAME, draw_3d_graph);

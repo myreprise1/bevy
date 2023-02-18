@@ -35,6 +35,7 @@ pub struct MainPass3dNode {
 impl MainPass3dNode {
     pub const NAME: &'static str = "main_pass";
     pub const IN_VIEW: &'static str = "view";
+    pub const END_MAIN_PASS_POST_PROCESSING: &str = "end_main_pass_post_processing";
 
     pub fn new(world: &mut World) -> Self {
         Self {
