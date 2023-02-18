@@ -5,9 +5,7 @@ pub mod prelude {
 mod camera_3d;
 mod main_pass_3d_node;
 
-pub mod graph {
-    pub const NAME: &str = "core_3d";
-}
+pub const GRAPH_NAME: &str = "core_3d";
 
 use std::cmp::Reverse;
 
@@ -114,7 +112,7 @@ impl Plugin for Core3dPlugin {
             MainPass3dNode::END_MAIN_PASS_POST_PROCESSING,
             UpscalingNode::NAME,
         );
-        graph.add_sub_graph(graph::NAME, draw_3d_graph);
+        graph.add_sub_graph(GRAPH_NAME, draw_3d_graph);
     }
 }
 

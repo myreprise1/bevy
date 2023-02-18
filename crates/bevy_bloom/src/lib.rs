@@ -56,7 +56,7 @@ impl Plugin for BloomPlugin {
         {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
-            let draw_3d_graph = graph.get_sub_graph_mut(bevy_core_3d::graph::NAME).unwrap();
+            let draw_3d_graph = graph.get_sub_graph_mut(bevy_core_3d::GRAPH_NAME).unwrap();
             draw_3d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_3d_graph.add_slot_edge(
                 draw_3d_graph.input_node().id,
@@ -72,7 +72,7 @@ impl Plugin for BloomPlugin {
         {
             let bloom_node = BloomNode::new(&mut render_app.world);
             let mut graph = render_app.world.resource_mut::<RenderGraph>();
-            let draw_2d_graph = graph.get_sub_graph_mut(bevy_core_2d::graph::NAME).unwrap();
+            let draw_2d_graph = graph.get_sub_graph_mut(bevy_core_2d::GRAPH_NAME).unwrap();
             draw_2d_graph.add_node(BloomNode::NAME, bloom_node);
             draw_2d_graph.add_slot_edge(
                 draw_2d_graph.input_node().id,

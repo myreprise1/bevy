@@ -5,9 +5,7 @@ pub mod prelude {
 mod camera_2d;
 mod main_pass_2d_node;
 
-pub mod graph {
-    pub const NAME: &str = "core_2d";
-}
+pub const GRAPH_NAME: &str = "core_2d";
 
 pub use camera_2d::*;
 pub use main_pass_2d_node::*;
@@ -94,7 +92,7 @@ impl Plugin for Core2dPlugin {
             MainPass2dNode::END_MAIN_PASS_POST_PROCESSING,
             UpscalingNode::NAME,
         );
-        graph.add_sub_graph(graph::NAME, draw_2d_graph);
+        graph.add_sub_graph(GRAPH_NAME, draw_2d_graph);
     }
 }
 

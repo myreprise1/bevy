@@ -66,7 +66,7 @@ pub struct Camera3dBundle {
 impl Default for Camera3dBundle {
     fn default() -> Self {
         Self {
-            camera_render_graph: CameraRenderGraph::new(super::graph::NAME),
+            camera_render_graph: CameraRenderGraph::new(super::GRAPH_NAME),
             tonemapping: Tonemapping::Enabled {
                 deband_dither: true,
             },

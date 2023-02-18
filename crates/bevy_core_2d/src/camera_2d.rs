@@ -60,7 +60,7 @@ impl Camera2dBundle {
             projection.far(),
         );
         Self {
-            camera_render_graph: CameraRenderGraph::new(super::graph::NAME),
+            camera_render_graph: CameraRenderGraph::new(super::GRAPH_NAME),
             projection,
             visible_entities: VisibleEntities::default(),
             frustum,

@@ -1,5 +1,7 @@
 use bevy_app::prelude::*;
 use bevy_asset::{load_internal_asset, HandleUntyped};
+use bevy_core_2d::MainPass2dNode;
+use bevy_core_3d::MainPass3dNode;
 use bevy_derive::Deref;
 use bevy_ecs::prelude::*;
 use bevy_fullscreen_vertex_shader::fullscreen_shader_vertex_state;
@@ -99,7 +101,7 @@ impl Plugin for FxaaPlugin {
             let fxaa_node = FxaaNode::new(&mut render_app.world);
             let mut binding = render_app.world.resource_mut::<RenderGraph>();
             let graph = binding
-                .get_sub_graph_mut(bevy_core_3d::graph::NAME)
+                .get_sub_graph_mut(bevy_core_3d::GRAPH_NAME)
                 .unwrap();
 
             graph.add_node(FxaaNode::NAME, fxaa_node);
@@ -121,7 +123,7 @@ impl Plugin for FxaaPlugin {
             let fxaa_node = FxaaNode::new(&mut render_app.world);
             let mut binding = render_app.world.resource_mut::<RenderGraph>();
             let graph = binding
-                .get_sub_graph_mut(bevy_core_2d::graph::NAME)
+                .get_sub_graph_mut(bevy_core_2d::GRAPH_NAME)
                 .unwrap();
 
             graph.add_node(FxaaNode::NAME, fxaa_node);
